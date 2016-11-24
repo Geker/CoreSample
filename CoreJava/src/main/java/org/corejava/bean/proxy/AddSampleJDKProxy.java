@@ -18,7 +18,7 @@ public class AddSampleJDKProxy {
         if (a instanceof AddClass) {
             n = ((AddClass) a).addC(1, 2);
         } else
-            n = a.add(1, 2);
+            n = a.addInt(1, 2);
 
         System.out.printf("hello " + n);
     }
@@ -35,7 +35,7 @@ public class AddSampleJDKProxy {
             }
         };
         add proxy = (add) Proxy.newProxyInstance(AddClass.class.getClassLoader(), new Class[]{add.class}, invocation);
-        int j = proxy.add(1, 2);
+        int j = proxy.addInt(1, 2);
         System.out.println(j);
 
     }
