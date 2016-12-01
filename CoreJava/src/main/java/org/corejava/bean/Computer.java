@@ -1,6 +1,6 @@
 package org.corejava.bean;
 
-public class Computer {
+public class Computer extends AbstractCalc implements Cloneable {
 
     private String cpu;
     private String mem;
@@ -50,5 +50,11 @@ public class Computer {
         public void setS(String s) {
             this.s = s;
         }
+    }
+
+    @Override
+
+    public int calc(int i, int j) {
+        return super.calc(i, j) + 100;
     }
 }
