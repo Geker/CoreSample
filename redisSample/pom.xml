@@ -8,11 +8,8 @@
 		<artifactId>personJava</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
-	<groupId>person.java</groupId>
 	<artifactId>redisSample</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	
+
 	<name>redisSample</name>
 	<url>http://maven.apache.org</url>
 	<properties>
