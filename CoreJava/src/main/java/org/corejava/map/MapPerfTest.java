@@ -9,8 +9,7 @@ import java.util.Set;
 
 @SuppressWarnings("rawtypes")
 public class MapPerfTest {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         for (int i = 0; i < 100; i++) {
             System.out.println();
 
@@ -24,7 +23,6 @@ public class MapPerfTest {
         }
     }
 
-
     @SuppressWarnings("unchecked")
     static long test(int ENTRIES, Map map) {
         long SEED = 0;
@@ -37,8 +35,7 @@ public class MapPerfTest {
         for (int i = 0; i < ENTRIES; i++)
             map.put(random.nextInt(), random.nextInt());
 
-        for (int i = 0; i < RW_RATIO; i++)
-        {
+        for (int i = 0; i < RW_RATIO; i++) {
             random.setSeed(SEED);
             for (int j = 0; j < ENTRIES; j++) {
                 map.get(random.nextInt());
@@ -50,9 +47,7 @@ public class MapPerfTest {
         return t;
     }
 
-
-    static class FakeMap implements Map
-    {
+    static class FakeMap implements Map {
         @Override
         public Object get(Object key) {
             return null;
