@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class TestJsonLib {
 
     /**
-     * 测试表明，在jdk 7 -8上测试，fastjson在反序列化的时候，有接近50%的性能优势，而jackson在序列化的时候有35%左右的性能优势。
+     * 测试表明，在jdk 7 -8上测试，fastjson在反序列化的时候，有接近50%的性能优势，而jackson在序列化的时候有40-50%左右的性能优势。
      */
     @Test
     public void test() {
@@ -33,7 +33,7 @@ public class TestJsonLib {
 class PerformanceTest {
 
     static ObjectMapper mapper = new ObjectMapper();
-    static int cnt = 100000;
+    static int cnt = 10000;
     static List<String> l1 = new ArrayList<>(cnt * 2);
     static List<String> l2 = new ArrayList<>(cnt * 2);
     static List<Corp> ll1 = new ArrayList<>(cnt * 2);
@@ -48,7 +48,7 @@ class PerformanceTest {
             list.add(fullObject(Corp.class));
         }
         long t = Monitoring.end();
-        System.out.println("生成数据：" + t);
+        System.out.println("生成数据：" + t / 1000000.0);
         jackson(list);
 
         fastjson(list);
@@ -67,11 +67,11 @@ class PerformanceTest {
             long jack = Monitoring.end();
             jsum += jack;
 
-            System.out.println(String.format("Serialize jackson:%10d, fastjson %10d", jack / 1000, fast / 1000));
+            System.out.println(String.format("Serialize jackson:%10f, fastjson %10f", jack / 1000000.0, fast / 1000000.0));
             System.gc();
         }
-        System.out.println(String.format("Serialize jackson sum :%10d, fastjson sum  %10d , jack faster :%10.2f %%", jsum / 1000,
-            fsum / 1000, (jsum - fsum) * -100.0 / fsum));
+        System.out.println(String.format("Serialize jackson sum :%10f, fastjson sum  %10f , jack faster :%10.2f %%", jsum / 1000000.0,
+            fsum / 1000000.0, (jsum - fsum) * -100.0 / fsum));
         jsum = 0;
         fsum = 0;
         deFastjson(l2);
@@ -90,11 +90,11 @@ class PerformanceTest {
             deFastjson(l2);
             long fast = Monitoring.end();
             fsum += fast;
-            System.out.println(String.format("deSerialize jackson:%10d, fastjson %10d", jack / 1000, fast / 1000));
+            System.out.println(String.format("deSerialize jackson:%10f, fastjson %10f", jack / 1000000.0, fast / 1000000.0));
             System.gc();
         }
-        System.out.println(String.format("deSerialize jackson sum :%10d, fastjson sum  %10d , jack faster :%10.2f %%", jsum / 1000,
-            fsum / 1000, (jsum - fsum) * -100.0 / fsum));
+        System.out.println(String.format("deSerialize jackson sum :%10f, fastjson sum  %10f , jack faster :%10.2f %%", jsum / 1000000.0,
+            fsum / 1000000.0, (jsum - fsum) * -100.0 / fsum));
 
     }
 
@@ -165,10 +165,10 @@ class PerformanceTest {
                 if (method.getName().indexOf("set") == 0) {
                     Class param = method.getParameterTypes()[0];
                     if (param.equals(String.class)) {
-                        method.invoke(t, RandomString.getRandomString(5));
+                        method.invoke(t, RandomString.getRandomString(103));
                     }
                     else if (param.equals(Short.class)) {
-                        method.invoke(t, (short) new Random().nextInt(5));
+                        method.invoke(t, (short) new Random().nextInt(1998223));
                     }
                     else if (param.equals(Float.class)) {
                         method.invoke(t, new Random().nextFloat());
@@ -177,7 +177,7 @@ class PerformanceTest {
                         method.invoke(t, new Random().nextDouble());
                     }
                     else if (param.equals(Integer.class)) {
-                        method.invoke(t, new Random().nextInt(10));
+                        method.invoke(t, new Random().nextInt(109992));
                     }
                     else if (param.equals(Long.class)) {
                         method.invoke(t, new Random().nextLong());
