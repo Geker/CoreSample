@@ -3,7 +3,7 @@ package org.corejava.bean.serialize;
 public class Bean {
     String name;
 
-    transient public String dev;
+    String dev;
 
     public String getDev() {
         return dev;
@@ -22,9 +22,9 @@ public class Bean {
 
     }
 
-    public String getFullName() {
-        return "full" + name;
-    }
+    // public String getFullName() {
+    // return "full" + name;
+    // }
 
     @Override
     public String toString() {
