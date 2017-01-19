@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CoreJava/CoreJava.iml" filepath="$PROJECT_DIR$/CoreJava/CoreJava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/personJavaSample.iml" filepath="$PROJECT_DIR$/personJavaSample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/redisSample/redisSample.iml" filepath="$PROJECT_DIR$/redisSample/redisSample.iml" />
+    </modules>
+  </component>
+</project>
