@@ -16,10 +16,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class BeanUtilsComputerTest {
     Computer com = new Computer();
-
+    ObjectMapper mapper = new ObjectMapper();
     @Before
     public void init()
     {
@@ -83,12 +84,13 @@ public class BeanUtilsComputerTest {
     @Test
     public void bean2MapTest() throws Exception {
         Object obj = PropertyUtils.describe(com);
-        System.err.println(JSON.toJSONString(com));
-        System.err.println(JSON.toJSONString(obj.toString()));
+        System.err.println((com));
+        System.err.println(JSON.toJSONString(obj));
+        System.err.println(mapper.writeValueAsString(obj));
         System.err.println("---------");
         Object obj2 = BeanUtils.describe(com);
-
-        System.err.println(JSON.toJSONString(obj2.toString()));
+        System.err.println(JSON.toJSONString(obj2));
+        System.err.println(mapper.writeValueAsString(obj2));
 
     }
 }

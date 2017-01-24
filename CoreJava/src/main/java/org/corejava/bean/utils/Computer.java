@@ -16,6 +16,10 @@ public class Computer {
         return buyTime;
     }
 
+    @SuppressWarnings("unused")
+    private Date getTime() {
+        return buyTime;
+    }
     public void setBuyTime(Date buyTime) {
         this.buyTime = buyTime;
     }
