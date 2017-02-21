@@ -34,5 +34,6 @@
   	<module>redisSample</module>
     <module>personJava</module>
     <module>springBootSample</module>
+    <module>webCrawler</module>
   </modules>
 </project>

@@ -1,5 +1,6 @@
 package org.corejava.bean;
 
+//@Component
 public class Computer extends AbstractCalc implements Cloneable {
 
     private String cpu;
