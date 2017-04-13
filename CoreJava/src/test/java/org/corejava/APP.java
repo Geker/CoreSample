@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 public class APP {
     public static void main(String[] args) throws IOException {
         List l = new ArrayList<String>();
@@ -17,5 +20,6 @@ public class APP {
         System.out.println(l.size());
         System.out.println(l.get(tot - 2));
         System.in.read();
+
     }
 }

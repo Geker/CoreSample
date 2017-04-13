@@ -58,4 +58,18 @@ public class Computer extends AbstractCalc implements Cloneable {
     public int calc(int i, int j) {
         return super.calc(i, j) + 100;
     }
+
+    @Override
+    protected void finalize() throws Throwable {
+
+        super.finalize();
+        System.err.println("finalize" + this.toString());
+
+    }
+
+    @Override
+    public String toString() {
+        return "Computer [cpu=" + cpu + ", mem=" + mem + ", keyboard=" + keyboard + ", mouse=" + mouse + "]";
+    }
+
 }
