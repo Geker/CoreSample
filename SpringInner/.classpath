@@ -28,5 +28,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/spring-context"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/spring-core"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/spring-expression"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/spring-test"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
