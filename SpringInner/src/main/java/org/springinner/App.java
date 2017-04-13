@@ -16,7 +16,8 @@ public class App
         @SuppressWarnings("resource")
         ClassPathXmlApplicationContext cAppCtx = new ClassPathXmlApplicationContext("applicationContext.xml");
         ISay bean = cAppCtx.getBean(ISay.class);
-        System.err.println(bean.toString());
+        IObj bean1 = cAppCtx.getBean("box", IObj.class);
+        System.err.println(bean1.toString());
 
     }
 }
