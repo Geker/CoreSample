@@ -16,6 +16,16 @@
     <!-- 扫描类包,将Spring注解的类自动转换Bean -->
     <context:component-scan base-package="org.springinner"/>
 
+	<bean id="userlogin" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <!-- 指定代理接口，如果是多个接口，可以使用List元素指定 -->
+<!--         <property name="proxyInterfaces" value="com.aop.test.UserLogin"/> -->
+        <!-- 指定通知 -->
+        <property name="interceptorNames" value="aroundAOP"/>
+        <!-- 指定目标对象 -->    <!-- 这个地方的name 我开始按照书上写的target报错，我进ProxyFactoryBean类看 没有target属性和set它的方法，有targetName属性修改了就对了-->
+        <property name="targetName" value="targetBean"/>
+    </bean>
+
+
     <!-- 定义一个使用DBCP实现的数据源 -->
 <!--     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close"

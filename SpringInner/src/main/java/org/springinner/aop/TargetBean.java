@@ -12,4 +12,8 @@ public class TargetBean {
 	public void invoke() {
 		logger.debug("invoke Bean method");
 	}
+
+	public void invoke2() {
+		logger.debug("invoke2 Bean method");
+	}
 }
