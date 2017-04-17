@@ -3,7 +3,6 @@ package org.corejava.bean.hessian;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +18,7 @@ public class HessianSerializer {
 
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         HessianOutput ho = new HessianOutput(os);
+        ho.getSerializerFactory().setAllowNonSerializable(true);
         ho.writeObject(obj);
         return os.toByteArray();
     }
@@ -51,11 +51,8 @@ public class HessianSerializer {
     }
     
 
-    static class Bean implements Serializable {
-        /**
-        *
-        */
-        private static final long serialVersionUID = 1L;
+    static class Bean {
+
         Date dt;
         String name;
         Integer i;
