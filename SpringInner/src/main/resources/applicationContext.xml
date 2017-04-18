@@ -14,7 +14,7 @@
 	<!-- 扫描类包,将Spring注解的类自动转换Bean -->
 	<context:component-scan base-package="org.springinner" />
 
-
+		<bean  id="baseBean" class="org.springinner.autowiring.BaseBean" autowire="byName"></bean>
  
 		<bean id="printRandomInt" class="org.springinner.overridemethod.PrintRandomInt">
 			<lookup-method name="getRandom" bean="randomGen" />
