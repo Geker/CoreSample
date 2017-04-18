@@ -15,7 +15,7 @@
 	<context:component-scan base-package="org.springinner" />
 
 
-	<beans>
+ 
 		<bean id="printRandomInt" class="org.springinner.overridemethod.PrintRandomInt">
 			<lookup-method name="getRandom" bean="randomGen" />
 		</bean>
@@ -26,9 +26,9 @@
 		<bean id="initDestory2" class="org.springinner.initanddestory.InitDestory2" init-method="init" destroy-method="destory">
 			
 		</bean>
-	</beans>
 
-	<bean id="userlogin" class="org.springframework.aop.framework.ProxyFactoryBean">
+
+	<bean id="proxybean" class="org.springframework.aop.framework.ProxyFactoryBean">
         <!-- 指定代理接口，如果是多个接口，可以使用List元素指定 -->
 <!--         <property name="proxyInterfaces" value="com.aop.test.UserLogin"/> -->
         <!-- 指定通知 -->

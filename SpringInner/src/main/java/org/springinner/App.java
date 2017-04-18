@@ -35,8 +35,9 @@ public class App
 		// System.err.println(bean2.toString());
 
         // AOP
-        TargetBean bean2 = cAppCtx.getBean("userlogin", TargetBean.class);
+        TargetBean bean2 = cAppCtx.getBean("proxybean", TargetBean.class);
 		bean2.invoke();
+        bean2.invoke2();
 
     }
 }
