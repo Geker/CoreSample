@@ -29,12 +29,13 @@ public class App
         // bean4.print();
         // PrintRandomInt bean5 = cAppCtx.getBean("printRandomInt2", PrintRandomInt.class);
         // bean5.print();
-        cAppCtx.destroy();
+        // cAppCtx.destroy();
 		// IObj bean1 = cAppCtx.getBean("box", IObj.class);
 		// System.err.println(bean1.toString());
-		TargetBean bean2 = cAppCtx.getBean("userlogin", TargetBean.class);
 		// System.err.println(bean2.toString());
 
+        // AOP
+        TargetBean bean2 = cAppCtx.getBean("userlogin", TargetBean.class);
 		bean2.invoke();
 
     }
