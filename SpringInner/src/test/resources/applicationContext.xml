@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:p="http://www.springframework.org/schema/p"
-       xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/context
          http://www.springframework.org/schema/context/spring-context.xsd
@@ -13,38 +11,50 @@
          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
    ">
 
-    <!-- 扫描类包,将Spring注解的类自动转换Bean -->
-    <context:component-scan base-package="org.springinner"/>
+	<context:component-scan base-package="org.springinner" />
 
-    <!-- 定义一个使用DBCP实现的数据源 -->
-<!--     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-          destroy-method="close"
-          p:driverClassName="com.mysql.jdbc.Driver"
-          p:url="jdbc:mysql://localhost:3306/sampledb?useSSL=false"
-          p:username="test"
-          p:password="123456"
-    /> -->
 
-    <!-- 定义Jdbc模板Bean -->
-    <!-- <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
-          p:dataSource-ref="dataSource"/> -->
 
-    <!-- 配置事务管理器 -->
-  <!--   <bean id="transactionManager"
-          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-          p:dataSource-ref="dataSource"
-    /> -->
+	<bean id="printRandomInt" class="org.springinner.overridemethod.PrintRandomInt">
+		<lookup-method name="getRandom" bean="randomGen" />
+	</bean>
 
-    <!-- 通过AOP配置提供事务增强，让service包下所有Bean的所有方法拥有事务 -->
-    <!-- <aop:config proxy-target-class="true">
-        <aop:pointcut id="serviceMethod"
-                      expression="execution(* com.brianway.learning.spring.helloworld.service.*.*(..))"/>
-        <aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice"/>
-    </aop:config>
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="*"/>
-        </tx:attributes>
-    </tx:advice> -->
+	<bean id="printRandomInt2" class="org.springinner.overridemethod.PrintRandomInt">
+		<replaced-method name="getRandom" replacer="randomMethodReplace" />
+	</bean>
+	<bean id="initDestory2" class="org.springinner.initanddestory.InitDestory2"
+		init-method="init" destroy-method="destory">
+
+	</bean>
+
+
+	<bean id="proxybean" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<!-- 指定代理接口，如果是多个接口，可以使用List元素指定 -->
+		<!-- <property name="proxyInterfaces" value="com.aop.test.UserLogin"/> -->
+		<!-- 指定通知 -->
+		<property name="interceptorNames" value="aroundAOP" />
+		<!-- 指定目标对象 -->    <!-- 这个地方的name 我开始按照书上写的target报错，我进ProxyFactoryBean类看 没有target属性和set它的方法，有targetName属性修改了就对了 -->
+		<property name="targetName" value="targetBean" />
+	</bean>
+
+	<!-- 定义一个使用DBCP实现的数据源 -->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close" p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://localhost:3306/sampledb?useSSL=false" 
+		p:username="test" p:password="123456" /> -->
+
+	<!-- 定义Jdbc模板Bean -->
+	<!-- <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate" 
+		p:dataSource-ref="dataSource"/> -->
+
+	<!-- 配置事务管理器 -->
+	<!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager" 
+		p:dataSource-ref="dataSource" /> -->
+
+	<!-- 通过AOP配置提供事务增强，让service包下所有Bean的所有方法拥有事务 -->
+	<!-- <aop:config proxy-target-class="true"> <aop:pointcut id="serviceMethod" 
+		expression="execution(* com.brianway.learning.spring.helloworld.service.*.*(..))"/> 
+		<aop:advisor pointcut-ref="serviceMethod" advice-ref="txAdvice"/> </aop:config> 
+		<tx:advice id="txAdvice" transaction-manager="transactionManager"> <tx:attributes> 
+		<tx:method name="*"/> </tx:attributes> </tx:advice> -->
 
 </beans>

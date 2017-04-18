@@ -12,6 +12,7 @@ public class AroundAOP implements MethodInterceptor {
 
 	@Override
 	public Object invoke(MethodInvocation invoke) throws Throwable {
+        // 只处理不是invoke的方法
 		if (!invoke.getMethod().getName().equals("invoke")) {
 			Object[] objs = invoke.getArguments();
 

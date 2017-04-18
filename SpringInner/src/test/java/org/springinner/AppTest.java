@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springinner.aop.TargetBean;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
@@ -20,8 +21,9 @@ public class AppTest {
 
     @Test
     public void testName() throws Exception {
-        ISay bean = cAppCtx.getBean(ISay.class);
-        logger.error(bean.toString());
+        TargetBean bean = cAppCtx.getBean("proxybean", TargetBean.class);
+        bean.invoke();
+        bean.invoke2();
     }
 
 
