@@ -6,7 +6,8 @@ import java.util.List;
 //上边界 没有什么卵用
 public class SimpleGeneric2 {
 
-    static void print(List<? super SubSimple> t) {
+    static void print(List<? super Simple> t) {
+        // t.add(new Simple(2200));
         t.forEach(x -> {
             System.err.println(x.toString());
 

@@ -36,5 +36,6 @@
     <module>springBootSample</module>
     <module>webCrawler</module>
     <module>SpringInner</module>
+    <module>zkTutorial</module>
   </modules>
 </project>
