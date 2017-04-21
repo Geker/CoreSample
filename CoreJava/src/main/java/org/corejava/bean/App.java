@@ -13,6 +13,7 @@ public class App {
         Computer c = new Computer();
         nest a = new nest("a");
         nest b = new nest("b");
+
         System.err.println(ReflectionToStringBuilder.toString(a));
         System.err.println(ReflectionToStringBuilder.toString(b));
 
@@ -24,6 +25,7 @@ public class App {
         PropertyUtils.copyProperties(nb, c);
         BeanUtils.copyProperties(nb, c);
         System.err.println(ReflectionToStringBuilder.toString(nb));
+        // System.err.println(MoreObjects.toStringHelper(nb).toString());
 
     }
 

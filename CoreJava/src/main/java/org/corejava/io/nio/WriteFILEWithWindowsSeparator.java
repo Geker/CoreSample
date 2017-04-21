@@ -8,7 +8,7 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
-public class NIOFILE {
+public class WriteFILEWithWindowsSeparator {
     public static void main(String[] args) throws IOException {
         File f = new File("test");
         List<String>list=new ArrayList<>();
