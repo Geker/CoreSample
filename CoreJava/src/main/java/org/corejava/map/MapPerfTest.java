@@ -1,5 +1,6 @@
 package org.corejava.map;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -10,6 +11,8 @@ import java.util.Set;
 @SuppressWarnings("rawtypes")
 public class MapPerfTest {
     public static void main(String[] args) {
+        ArrayList<String> arr = new ArrayList<>();
+
         for (int i = 0; i < 100; i++) {
             System.out.println();
 

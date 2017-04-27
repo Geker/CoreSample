@@ -5,4 +5,7 @@ public class Obj implements IDefaultMethod, I2Interface3 {
 
   private String name;
 
+    public static class innerClass {
+        private String age;
+    }
 }
