@@ -3,7 +3,7 @@ package org.algorithm.tree;
 import com.google.common.base.Optional;
 import com.google.common.collect.BinaryTreeTraverser;
 
-public class BTree extends BinaryTreeTraverser<String> {
+public class BTreeTraverser extends BinaryTreeTraverser<String> {
 
     @Override
     public Optional<String> leftChild(String root) {
