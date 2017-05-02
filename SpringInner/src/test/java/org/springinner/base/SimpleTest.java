@@ -21,11 +21,15 @@ public class SimpleTest {
 
     @Test
     public void testName() throws Exception {
-
         XmlBeanFactory factory = new XmlBeanFactory(new ClassPathResource("/org/springinner/base/appCtx.xml"));
-        Object bean = factory.getBean("baseBean");
-        System.err.println(bean);
-
+        BaseFactoryBean bean = (BaseFactoryBean) factory.getBean("&baseFactoryBean");
+        Object obj = factory.getBean("baseFactoryBean");
+        System.err.println(obj);
+        Object obj2 = factory.getBean("baseFactoryBean");
+        // BaseBean obj1 = bean.getObject();
+        System.err.println("obj2:" + obj2);
+        // BaseBean obj2 = bean.getObject();
+        // System.err.println(obj2);
     }
 
     public static void main(String[] args) {

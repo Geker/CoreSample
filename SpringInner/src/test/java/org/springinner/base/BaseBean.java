@@ -11,4 +11,9 @@ public class BaseBean {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "BaseBean [name=" + name + "]";
+    }
+
 }

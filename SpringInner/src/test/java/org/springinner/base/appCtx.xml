@@ -13,8 +13,8 @@
 
 	<context:component-scan base-package="org.springinner.base" />
 	<beans>
-	<bean id="baseBean"  class="org.springinner.base.BaseBean"></bean>
-	<alias name="baseBean" alias="baseBean1"/>
+<!-- 	<bean id="baseBean"  class="org.springinner.base.BaseBean"></bean> -->
+<!-- 	<alias name="baseBean" alias="baseBean1"/> -->
 	</beans>
 
 
