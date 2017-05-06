@@ -17,9 +17,13 @@ public class WatcherTest {
         ZooKeeper zk = new ZooKeeper("127.0.0.1:2181", 3000, new CustomWatcher()); // 设置一个watcher
         CustomWatcher watcher = new CustomWatcher("one");
         Stat s = zk.exists("/test", watcher);
+        logger.debug(s.toString());
+
         byte[] ss = zk.getData("/test", watcher, new Stat());
+        zk.close();
         logger.debug(new String(ss));
         System.in.read();
 
     }
+
 }

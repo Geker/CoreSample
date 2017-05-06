@@ -13,10 +13,10 @@ import java.lang.reflect.Proxy;
 public class AddSampleJDKProxy {
     @Test
     public void TestCommonFuncProxy() {
-        add a = new AddSample();
+        Add a = new AddSample();
         int n;
-        if (a instanceof AddClass) {
-            n = ((AddClass) a).addC(1, 2);
+        if (a instanceof AddAbstractClass) {
+            n = ((AddAbstractClass) a).addC(1, 2);
         } else
             n = a.addInt(1, 2);
 
@@ -25,7 +25,7 @@ public class AddSampleJDKProxy {
 
     @Test
     public void TestJAVAProxy() {
-        final add a = new AddSample();
+        final Add a = new AddSample();
         InvocationHandler invocation = new InvocationHandler() {
 
 
@@ -34,7 +34,7 @@ public class AddSampleJDKProxy {
                 return method.invoke(a, args);
             }
         };
-        add proxy = (add) Proxy.newProxyInstance(AddClass.class.getClassLoader(), new Class[]{add.class}, invocation);
+        Add proxy = (Add) Proxy.newProxyInstance(AddAbstractClass.class.getClassLoader(), new Class[]{Add.class}, invocation);
         int j = proxy.addInt(1, 2);
         System.out.println(j);
 
