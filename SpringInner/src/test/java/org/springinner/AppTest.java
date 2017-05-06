@@ -9,9 +9,10 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springinner.aop.TargetBean;
+import org.springinner.autowiring.Location;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:applicationContext.xml")
+@ContextConfiguration(locations = "classpath:applicationContextProcesser.xml")
 public class AppTest {
 
     private static final Logger logger = LoggerFactory.getLogger(AppTest.class);
@@ -26,5 +27,11 @@ public class AppTest {
         bean.invoke2();
     }
 
+
+	@Test
+	public void testLocation() throws Exception {
+		Location bean = cAppCtx.getBean("location", Location.class);
+		logger.error("loc:" + bean.toString());
+	}
 
 }

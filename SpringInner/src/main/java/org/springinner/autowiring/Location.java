@@ -1,13 +1,21 @@
 package org.springinner.autowiring;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springinner.annotation.DynaAnnotation;
 
 @Component
 public class Location {
-    int i = 100;
-    int j = 99;
 
+	private static String ss = "sts";
+	@DynaAnnotation(val = "#j")
+	private String v;
+    int i = 100;
+	int j = 99;
+	@Value("#{${len}.concat(' world')}")
+	String vv;
     public int getI() {
+
         return i;
     }
 
@@ -24,8 +32,8 @@ public class Location {
     }
 
     @Override
-    public String toString() {
-        return "Location [i=" + i + ", j=" + j + "]";
-    }
+	public String toString() {
+		return "Location [v=" + v + ", i=" + i + ", j=" + j + ", vv=" + vv + "]";
+	}
 
 }
