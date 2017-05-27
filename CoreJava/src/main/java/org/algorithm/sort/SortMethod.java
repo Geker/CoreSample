@@ -26,6 +26,32 @@ public class SortMethod {
         }
     }
 
+    // 冒泡排序
+    public static <E extends Comparable<E>> void bubboSort(E[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr.length - 1; j++) {
+                if (arr[j + 1].compareTo(arr[j]) < 0) {
+                    swap(arr, j, j + 1);
+                }
+            }
+        }
+    }
+
+    // 选择排序
+    public static <E extends Comparable<E>> void selectSort(E[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            E value=arr[i];
+            int idx = i;
+            for (int j = i; j < arr.length; j++) {
+                if (arr[j].compareTo(value) > 0) {
+                    value = arr[j];
+                    idx = j;
+                }
+            }
+            swap(arr, i, idx);
+        }
+    }
+
     // 快速排序
     public static <E extends Comparable<E>> void quickSort(E[] arr, int low, int high) {
      
@@ -61,10 +87,10 @@ public class SortMethod {
     public static void main(String[] args) {
         Integer[] arr = new Integer[] { 1, 21, 9, 3, 5, 99, 3 };
         // showArray(Arrays.asList(arr));
-        // insertSort(arr);
+        selectSort(arr);
         // int i = BinarySearch.binSearch(arr, 21);
 
-        quickSort(arr, 0, arr.length - 1);
+        // quickSort(arr, 0, arr.length - 1);
         
         showArray(Arrays.asList(arr));
         // System.out.println(i);
