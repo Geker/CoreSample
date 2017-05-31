@@ -17,6 +17,7 @@ public class LambdaExpressTest {
             return StringUtils.compare(s, t);
         });
         System.out.println(list);
+        // commit 1 for git
     }
 
     @Test
