@@ -1,7 +1,7 @@
 package org.corejava.bean.proxy;
 
 /**
- * Created by songqingqing on 11/18/2016.
+ * modify by songqingqing on 2017年5月31日.
  */
 public interface Add {
     public int  addInt(int i,int j);
