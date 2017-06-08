@@ -10,7 +10,7 @@ import java.nio.channels.Selector;
 public class NIOFILE {
     // NIO的fileChannel不能设置为非阻塞模式，因此无法和selector配合进行相关的操作。
     public static void main(String[] args) throws IOException {
-        File f = new File("test");
+		File f = new File("CoreJava.iml");
         FileInputStream fis = new FileInputStream(f);
         FileChannel fc = fis.getChannel();
         Selector selector = Selector.open();
@@ -19,6 +19,7 @@ public class NIOFILE {
         dst.flip();
         byte[] bytes = dst.array();
         System.err.println(new String(bytes));
+
 
      }
 }
