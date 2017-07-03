@@ -1,9 +1,7 @@
 package org.corejava.math ;
 
-import java.lang.* ;
-import java.security.* ;
-import java.util.* ;
-import java.math.* ;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 
 /** Complex numbers with BigDecimal real and imaginary components
@@ -134,16 +132,18 @@ public class BigComplex
                 return BigDecimalMath.sqrt(norm(),mc) ;
         }
 
-        /** The square root.
-        * @param mc The mathematical context (precision) to be used for rounding.
-        * @return the square root of the this.
-        *   The branch is chosen such that the imaginary part of the result has the
-        *   same sign as the imaginary part of this.
-        * Tim Ahrendt, <a href="http://dx.doi.org/10.1145/236869.236924">Fast High-precision computation of complex square roots</a>,
-        *    ISSAC 1996 p142-149.
-        * @since 2008-10-27  
-        * @author Richard J. Mathar
-        */
+        /**
+     * The square root.
+     *
+     * @param mc The mathematical context (precision) to be used for rounding.
+     * @return the square root of the this.
+     *         The branch is chosen such that the imaginary part of the result has the
+     *         same sign as the imaginary part of this.
+     *         Tim Ahrendt, <a href="http://dx.doi.org/10.1145/236869.236924">Fast High-precision computation of complex square roots</a>,
+     *         ISSAC 1996 p142-149.
+     * @since 2008-10-27
+     * @author Richard J. Mathar
+     */
         BigComplex sqrt(MathContext mc)
         {
                 final BigDecimal half = new BigDecimal("2") ;
@@ -190,6 +190,7 @@ public class BigComplex
         * @return real and imaginary part in parenthesis, divided by a comma.
         * @author Richard J. Mathar
         */
+        @Override
         public String toString()
         {
                 return "("+re.toString()+","+im.toString()+")" ;
