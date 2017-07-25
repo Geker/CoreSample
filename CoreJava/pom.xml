@@ -124,9 +124,17 @@
 			<version>3.2.5</version>
 		</dependency>
 		<dependency>
+			<groupId>org.ow2.asm</groupId>
+			<artifactId>asm</artifactId>
+			<version>6.0_ALPHA</version>
+		</dependency>
+
+
+		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.16</version>
 		</dependency>
+
 	</dependencies>
 </project>
