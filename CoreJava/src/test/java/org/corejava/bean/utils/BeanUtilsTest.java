@@ -22,7 +22,7 @@ import org.junit.Test;
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class BeanUtilsComputerTest {
+public class BeanUtilsTest {
     Computer com = new Computer();
     ObjectMapper mapper = new ObjectMapper();
     @Before
@@ -129,6 +129,17 @@ public class BeanUtilsComputerTest {
         BeanWithDate b = new BeanWithDate();
         BeanUtils.populate(b, map);
         System.out.println(JSON.toJSONString(b));
+    }
+
+    @Test
+    public void test_dateConverter() throws Exception {
+        DateConverter dateCon = new DateConverter(null); // 带参数是，相当于设置default
+        dateCon.setPattern("yyyyMMdd");
+        dateCon.setLocale(Locale.getDefault());
+        Date val = dateCon.convert(Date.class, 20170712);
+        Date val1 = dateCon.convert(Date.class, null);
+
+        System.out.println(val1);
     }
 
 }
