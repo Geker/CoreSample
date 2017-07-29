@@ -13,7 +13,7 @@
         <module name="zkTutorial" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="CoreJava" target="1.8" />
       <module name="personJavaSample" target="1.8" />
       <module name="redisSample" target="1.8" />

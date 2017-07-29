@@ -11,6 +11,8 @@ public class ClosuerTest {
         System.err.println(Integer[].class);
         System.err.println(Array.newInstance(Integer.class, 2));
         System.err.println(sum(new Integer[] { 1, 1, 2, 3 }));
+
+        System.err.println(sumX(new Integer[] { 1, 92, 2, 3 }));
     }
 
     static int sum(Integer arr[])
@@ -29,6 +31,17 @@ public class ClosuerTest {
         };
         Arrays.asList(arr).forEach(action);
         return ii.get();
+    }
+
+
+    static int sumX(Integer ...x)
+    {
+        int j =0;
+        for (int n:x)
+        {
+            j+=n;
+        }
+        return j;
     }
     
     
