@@ -32,8 +32,6 @@
   <modules>
   	<module>CoreJava</module>
   	<module>redisSample</module>
-    <module>personJava</module>
-    <module>springBootSample</module>
     <module>webCrawler</module>
     <module>SpringInner</module>
     <module>zkTutorial</module>
