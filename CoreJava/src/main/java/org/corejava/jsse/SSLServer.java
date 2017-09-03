@@ -1,15 +1,38 @@
 package org.corejava.jsse;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.security.KeyStore;
+import java.util.List;
 
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocket;
-import javax.net.ssl.SSLServerSocketFactory;
 import javax.net.ssl.SSLSocket;
+import javax.net.ssl.TrustManagerFactory;
 
+import org.apache.commons.io.IOUtils;
+
+/*
+ * 需要创建密钥对，注意这里严格使用了keyManager  trustManager
+ *
+ *  1.服务端密钥生成
+ *   keytool -genkey -alias serverkey -keystore kserver.keystore
+ *  2.导出服务端的证书，并导入到client端的tstore中
+ *   keytool -export -alias serverkey -keystore kserver.keystore -file server.crt
+ *   keytool -import -alias serverkey -file server.crt -keystore tclient.keystore
+ *
+ *  同理生成客户端的密钥对，然后将公钥导入到服务端。
+ *  3.  keytool -genkey -alias clientkey -keystore kclient.keystore
+		keytool export -alias clientkey -keystore kclient.keystore -file client.crt
+		keytool -import -alias client -file client.crt -keystore tserver.keystore
+		然后将文件放置到项目中。
+ * */
 public class SSLServer {
     // 服务器端授权的用户名和密码
 
@@ -17,12 +40,13 @@ public class SSLServer {
     private static final String PASSWORD = "credential";// 服务器端保密内容
 
     private static final String SECRET_CONTENT = "This is confidential content from server X, for your eye!";
+	private static final String SERVER_KEY_STORE_PASSWORD = "123456";
+	private static final String SERVER_TRUST_KEY_STORE_PASSWORD = "123456";
     private SSLServerSocket serverSocket = null;
+	private int DEFAULT_PORT = 7070;
 
     public SSLServer() throws Exception {
-        // 通过套接字工厂，获取一个服务器端套接字
-        SSLServerSocketFactory socketFactory = (SSLServerSocketFactory) SSLServerSocketFactory.getDefault();
-        serverSocket = (SSLServerSocket) socketFactory.createServerSocket(7070);
+		init();
     }
 
     private void runServer() throws IOException {
@@ -64,4 +88,33 @@ public class SSLServer {
         SSLServer server = new SSLServer();
         server.runServer();
     }
+
+	public void init() {
+		try {
+			SSLContext ctx = SSLContext.getInstance("SSL");
+
+			KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
+			TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
+
+			KeyStore ks = KeyStore.getInstance("JKS");
+			KeyStore tks = KeyStore.getInstance("JKS");
+			InputStream is = SSLServer.class.getClassLoader()
+					.getResourceAsStream("/org/corejava/jsse/kserver.keystore");
+			InputStreamReader isr = new InputStreamReader(is);
+			List<String> ss = IOUtils.readLines(isr);
+			System.err.println(ss);
+			ks.load(new FileInputStream("kserver.keystore"), SERVER_KEY_STORE_PASSWORD.toCharArray());
+			tks.load(new FileInputStream("tserver.keystore"), SERVER_TRUST_KEY_STORE_PASSWORD.toCharArray());
+
+			kmf.init(ks, SERVER_KEY_STORE_PASSWORD.toCharArray());
+			tmf.init(tks);
+
+			ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
+
+			serverSocket = (SSLServerSocket) ctx.getServerSocketFactory().createServerSocket(DEFAULT_PORT);
+			serverSocket.setNeedClientAuth(true);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 }
