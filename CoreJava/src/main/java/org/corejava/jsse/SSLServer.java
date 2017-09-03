@@ -3,20 +3,16 @@ package org.corejava.jsse;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.security.KeyStore;
-import java.util.List;
 
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLServerSocket;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.TrustManagerFactory;
-
-import org.apache.commons.io.IOUtils;
 
 /*
  * 需要创建密钥对，注意这里严格使用了keyManager  trustManager
@@ -98,13 +94,17 @@ public class SSLServer {
 
 			KeyStore ks = KeyStore.getInstance("JKS");
 			KeyStore tks = KeyStore.getInstance("JKS");
-			InputStream is = SSLServer.class.getClassLoader()
-					.getResourceAsStream("/org/corejava/jsse/kserver.keystore");
-			InputStreamReader isr = new InputStreamReader(is);
-			List<String> ss = IOUtils.readLines(isr);
-			System.err.println(ss);
-			ks.load(new FileInputStream("kserver.keystore"), SERVER_KEY_STORE_PASSWORD.toCharArray());
-			tks.load(new FileInputStream("tserver.keystore"), SERVER_TRUST_KEY_STORE_PASSWORD.toCharArray());
+			// InputStream is = SSLServer.class.getClassLoader()
+			// .getResourceAsStream("2.txt");
+			// InputStreamReader isr = new InputStreamReader(is);
+			// List<String> ss = IOUtils.readLines(isr);
+			// System.err.println(ss);
+			ks.load(new FileInputStream(
+					"C:\\Dev\\javaworkspace\\CoreSample\\CoreJava\\target\\classes\\org\\corejava\\jsse\\kserver.keystore"),
+					SERVER_KEY_STORE_PASSWORD.toCharArray());
+			tks.load(new FileInputStream(
+					"C:\\Dev\\javaworkspace\\CoreSample\\CoreJava\\target\\classes\\org\\corejava\\jsse\\tserver.keystore"),
+					SERVER_TRUST_KEY_STORE_PASSWORD.toCharArray());
 
 			kmf.init(ks, SERVER_KEY_STORE_PASSWORD.toCharArray());
 			tmf.init(tks);
