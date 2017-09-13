@@ -35,5 +35,6 @@
     <module>webCrawler</module>
     <module>SpringInner</module>
     <module>zkTutorial</module>
+    <module>mybatisSample</module>
   </modules>
 </project>

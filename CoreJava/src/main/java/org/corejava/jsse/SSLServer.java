@@ -1,7 +1,6 @@
 package org.corejava.jsse;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -36,13 +35,13 @@ public class SSLServer {
     private static final String PASSWORD = "credential";// 服务器端保密内容
 
     private static final String SECRET_CONTENT = "This is confidential content from server X, for your eye!";
-	private static final String SERVER_KEY_STORE_PASSWORD = "123456";
-	private static final String SERVER_TRUST_KEY_STORE_PASSWORD = "123456";
+    private static final String SERVER_KEY_STORE_PASSWORD = "123456";
+    private static final String SERVER_TRUST_KEY_STORE_PASSWORD = "123456";
     private SSLServerSocket serverSocket = null;
-	private int DEFAULT_PORT = 7070;
+    private int DEFAULT_PORT = 7070;
 
     public SSLServer() throws Exception {
-		init();
+        init();
     }
 
     private void runServer() throws IOException {
@@ -77,44 +76,40 @@ public class SSLServer {
         }
     }
 
-
-
-
     public static void main(String args[]) throws Exception {
         SSLServer server = new SSLServer();
         server.runServer();
     }
 
-	public void init() {
-		try {
-			SSLContext ctx = SSLContext.getInstance("SSL");
+    public void init() {
+        try {
+            SSLContext ctx = SSLContext.getInstance("SSL");
 
-			KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
-			TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
+            KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
 
-			KeyStore ks = KeyStore.getInstance("JKS");
-			KeyStore tks = KeyStore.getInstance("JKS");
-			// InputStream is = SSLServer.class.getClassLoader()
-			// .getResourceAsStream("2.txt");
-			// InputStreamReader isr = new InputStreamReader(is);
-			// List<String> ss = IOUtils.readLines(isr);
-			// System.err.println(ss);
-			ks.load(new FileInputStream(
-					"C:\\Dev\\javaworkspace\\CoreSample\\CoreJava\\target\\classes\\org\\corejava\\jsse\\kserver.keystore"),
-					SERVER_KEY_STORE_PASSWORD.toCharArray());
-			tks.load(new FileInputStream(
-					"C:\\Dev\\javaworkspace\\CoreSample\\CoreJava\\target\\classes\\org\\corejava\\jsse\\tserver.keystore"),
-					SERVER_TRUST_KEY_STORE_PASSWORD.toCharArray());
+            KeyStore ks = KeyStore.getInstance("JKS");
+            KeyStore tks = KeyStore.getInstance("JKS");
+            // InputStream is = SSLServer.class.getClassLoader().getResourceAsStream("org/corejava/classloader/4.txt");
+            // InputStreamReader isr = new InputStreamReader(is);
+            // List<String> ss = IOUtils.readLines(isr);
+            // System.err.println(ss);
 
-			kmf.init(ks, SERVER_KEY_STORE_PASSWORD.toCharArray());
-			tmf.init(tks);
+            ks.load(SSLServer.class.getClassLoader().getResourceAsStream("org/corejava/classloader/kserver.keystore"),
+                SERVER_KEY_STORE_PASSWORD.toCharArray());
+            tks.load(SSLServer.class.getClassLoader().getResourceAsStream("org/corejava/classloader/tserver.keystore"),
+                SERVER_TRUST_KEY_STORE_PASSWORD.toCharArray());
 
-			ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
+            kmf.init(ks, SERVER_KEY_STORE_PASSWORD.toCharArray());
+            tmf.init(tks);
 
-			serverSocket = (SSLServerSocket) ctx.getServerSocketFactory().createServerSocket(DEFAULT_PORT);
-			serverSocket.setNeedClientAuth(true);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
+            ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
+
+            serverSocket = (SSLServerSocket) ctx.getServerSocketFactory().createServerSocket(DEFAULT_PORT);
+            serverSocket.setNeedClientAuth(true);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
