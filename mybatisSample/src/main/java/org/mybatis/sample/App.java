@@ -1,4 +1,4 @@
-package org.mybatisSample;
+package org.mybatis.sample;
 
 /**
  * Hello world!
