@@ -8,18 +8,18 @@
 	<properties resource="mybatis/sample/conf/mybatisProps.properties">
 		<property name="username" value="root" />
 		<property name="password" value="root" />
-	</properties>
+ 	</properties>
 	<settings>
-		<!-- <setting name="cacheEnabled" value="true" /> -->
+		<setting name="cacheEnabled" value="true" />
 		<!-- <setting name="lazyLoadingEnabled" value="true" /> -->
 		<setting name="multipleResultSetsEnabled" value="true" />
 		<setting name="useColumnLabel" value="true" />
 		<setting name="useGeneratedKeys" value="false" />
 		<setting name="autoMappingBehavior" value="PARTIAL" />
-		<setting name="autoMappingUnknownColumnBehavior" value="WARNING" />
+		<!-- <setting name="autoMappingUnknownColumnBehavior" value="WARNING" /> -->
 		<setting name="defaultExecutorType" value="SIMPLE" />
 		<setting name="defaultStatementTimeout" value="25" />
-		<setting name="defaultFetchSize" value="100" />
+		<!-- <setting name="defaultFetchSize" value="100" /> -->
 		<setting name="safeRowBoundsEnabled" value="false" />
 		<setting name="mapUnderscoreToCamelCase" value="false" />
 		<setting name="localCacheScope" value="SESSION" />
@@ -58,6 +58,8 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="mybatis/sample/conf/SampleMapper.xml" />
+		<mapper resource="mybatis/sample/conf/cityMapper.xml" />
+		<mapper resource="mybatis/sample/conf/countryMapper.xml" />
 	</mappers>
+
 </configuration>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mybatis.example.countryMapper">
+
+
+	<!--cache标签+cacheEnabled（默认为true），相当于开启二级缓存。二级缓存，在session之间生效。但是必须commit或者close才会可见 -->
+	<cache></cache>
+	<!-- session 的commit会刷新一级缓存 -->
+	<!-- flushCache 要求语句每次都刷新cache，相当于让一级/二级缓存均不可用，且是一级缓存失效的唯一方法cacheEnabled -->
+	<select id="selectCountry" resultType="Country" flushCache="true">
+		select *
+		from country where country_id = #{country_id}
+	</select>
+</mapper>
