@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.example.CityMapper">
+<mapper namespace="org.mybatis.sample.CityMapper">
 
 
 	<!--cache标签+cacheEnabled（默认为true），相当于开启二级缓存。二级缓存，在session之间生效。但是必须commit或者close才会可见 -->
@@ -13,4 +13,7 @@
 		select *
 		from city where city_id = #{city_id}
 	</select>
+	<update id="updateCity"  flushCache="true">
+	update city set city=#{city} where city_id = #{city_id}
+	</update>
 </mapper>
