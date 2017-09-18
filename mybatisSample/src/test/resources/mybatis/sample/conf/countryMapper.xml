@@ -9,7 +9,7 @@
 	<cache></cache>
 	<!-- session 的commit会刷新一级缓存 -->
 	<!-- flushCache 要求语句每次都刷新cache，相当于让一级/二级缓存均不可用，且是一级缓存失效的唯一方法cacheEnabled -->
-	<select id="selectCountry" resultType="Country" flushCache="true">
+	<select id="selectCountry"  resultType="Country" flushCache="true">
 		select *
 		from country where country_id = #{country_id}
 	</select>

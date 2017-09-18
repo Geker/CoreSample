@@ -63,13 +63,13 @@ public class MybatisStartTest {
 
 		SqlSession session = sqlSessionFactory.openSession();
 		CityMapper mapper = session.getMapper(CityMapper.class);
-		City r = mapper.selectCity(2);
-		logger.warn(r.toString());
+        City r = mapper.selectCity(2);
+        logger.warn(r.toString());
 		Object i = mapper.updateCity("abha update", Integer.valueOf(2));
 		logger.warn("update rows:" + i);
 
-		r = mapper.selectCity(2);
-		logger.warn(r.toString());
+        // r = mapper.selectCity(2);
+        // logger.warn(r.toString());
 
 	}
 }
