@@ -53,7 +53,10 @@ public class MybatisStartTest {
 
 		SqlSession session = sqlSessionFactory.openSession();
 		Object r = session.selectOne("selectCountry", 2);
+		Object r1 = session.selectOne("selectCountry", 2);
 		logger.error("1 " + r.toString());
+		logger.error("2 " + r1.toString());
+
 		session.commit();
 
 	}

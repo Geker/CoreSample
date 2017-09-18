@@ -8,8 +8,12 @@
 	<!--cache标签+cacheEnabled（默认为true），相当于开启二级缓存。二级缓存，在session之间生效。但是必须commit或者close才会可见 -->
 	<cache></cache>
 	<!-- session 的commit会刷新一级缓存 -->
-	<!-- flushCache 要求语句每次都刷新cache，相当于让一级/二级缓存均不可用，且是一级缓存失效的唯一方法cacheEnabled -->
-	<select id="selectCountry"  resultType="Country" flushCache="true">
+
+	<!-- useCache="false"不能禁用一级缓存。 -->
+	<!-- flushCache 要求语句每次都刷新cache，相当于让一级/二级缓存均不可用，且是一级缓存失效的方法之一 -->
+	<!-- <setting name="localCacheScope" value="STATEMENT" /> 设置也可以禁用session的一级缓存。 -->
+
+	<select id="selectCountry" resultType="Country" flushCache="true">
 		select *
 		from country where country_id = #{country_id}
 	</select>
