@@ -1,4 +1,4 @@
-package org.corejava.objecttype;
+package org.corejava.genericAndRtti;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,5 +17,16 @@ public class GenericType {
         assertEquals(arrListInt.getClass(), arrListLong.getClass());
 
     }
+
+    @Test
+    public void genericCustomType() throws Exception {
+        AddObject<String> addStr = new AddObject<>();
+
+        AddObject<StringBuilder> addBuilder = new AddObject<>();
+
+        assertEquals(addStr.getClass(), addBuilder.getClass());
+
+    }
+
 
 }
