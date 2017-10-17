@@ -5,6 +5,7 @@
 
 <configuration>
 
+
 	<!--properties 只能用作一些动态替换的参数 -->
 	<properties resource="mybatis/sample/conf/mybatisProps.properties">
 		<property name="username" value="root" />
@@ -51,7 +52,12 @@
 		<!-- <typeHandler handler="org.mybatis.example.ExampleTypeHandler"/> -->
 	</typeHandlers>
 
-
+	<plugins>
+		<plugin interceptor="org.mybatis.sample.interceptor.CountInterceptor">
+			<property name="prop1" value="prop1" />
+			<property name="prop2" value="prop2" />
+		</plugin>
+	</plugins>
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
