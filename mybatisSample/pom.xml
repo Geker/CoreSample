@@ -32,4 +32,22 @@
 			<version>5.1.42</version>
 		</dependency>
 	</dependencies>
+
+	<!-- 部署管理 -->
+	<distributionManagement>
+		<!-- 发布releases -->
+		<repository>
+			<id>own-releases</id>
+			<name>project-releases</name>
+			<url>http://localhost:8081/repository/maven-releases/</url>
+		</repository>
+		<!-- 发布snapshots -->
+		<snapshotRepository>
+			<id>own-snapshots</id>
+			<name>project-snapshots</name>
+			<url> http://localhost:8081/repository/maven-snapshots/</url>
+			<!-- 使用timestamp和build number为每一个snapshot设置一个版本号 -->
+			<uniqueVersion>true</uniqueVersion>
+		</snapshotRepository>
+	</distributionManagement>
 </project>

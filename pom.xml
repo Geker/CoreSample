@@ -36,5 +36,6 @@
     <module>SpringInner</module>
     <module>zkTutorial</module>
     <module>mybatisSample</module>
+    <module>cxf-ws</module>
   </modules>
 </project>

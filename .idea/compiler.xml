@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="CoreJava" />
+        <module name="mybatisSample" />
         <module name="redisSample" />
         <module name="SpringInner" />
         <module name="webCrawler" />
@@ -15,6 +16,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="CoreJava" target="1.8" />
+      <module name="mybatisSample" target="1.8" />
       <module name="personJavaSample" target="1.8" />
       <module name="redisSample" target="1.8" />
       <module name="SpringInner" target="1.8" />
