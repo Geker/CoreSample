@@ -12,7 +12,9 @@ public class App {
 
         org.apache.cxf.endpoint.Server server = factory.create();
 
+
         server.start();
+        server.stop();
         //
         // // 第二种方式，通过JAX-WS提供的Endpoint来发布webservice
         // // 首先创建webservice服务提供类的实例
