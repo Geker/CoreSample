@@ -1,0 +1,116 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:sec="http://cxf.apache.org/configuration/security" xmlns:http="http://cxf.apache.org/transports/http/configuration"
+	xmlns:httpj="http://cxf.apache.org/transports/http-jetty/configuration"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xsi:schemaLocation="http://cxf.apache.org/configuration/security
+              http://cxf.apache.org/schemas/configuration/security.xsd
+            http://cxf.apache.org/transports/http/configuration
+            http://cxf.apache.org/schemas/configuration/http-conf.xsd
+            http://cxf.apache.org/transports/http-jetty/configuration
+            http://cxf.apache.org/schemas/configuration/http-jetty.xsd
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+            http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+			http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+			http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+            ">
+
+
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<bean id="contexts"
+		class="org.eclipse.jetty.server.handler.ContextHandlerCollection" />
+	<bean id="server" name="Main" class="org.eclipse.jetty.server.Server"
+		init-method="start" destroy-method="stop">
+		<constructor-arg>
+			<bean id="threadPool" class="org.eclipse.jetty.util.thread.QueuedThreadPool">
+				<property name="minThreads" value="10" />
+				<property name="maxThreads" value="50" />
+			</bean>
+		</constructor-arg>
+		<!-- <property name="connectors"> -->
+		<!-- <list> -->
+		<!-- <bean id="connector" class="org.eclipse.jetty.server.ServerConnector"> -->
+		<!-- <constructor-arg ref="server" /> -->
+		<!-- <property name="port" value="9001" /> -->
+		<!-- </bean> -->
+		<!-- </list> -->
+		<!-- </property> -->
+		<property name="handler">
+			<bean id="handlers" class="org.eclipse.jetty.server.handler.HandlerCollection">
+				<property name="handlers">
+					<list>
+						<ref bean="contexts" />
+						<bean id="defaultHandler" class="org.eclipse.jetty.server.handler.DefaultHandler" />
+					</list>
+				</property>
+			</bean>
+		</property>
+		<!-- <property name="beans"> -->
+		<!-- <list> -->
+		<!-- <bean id="deploymentManager" class="org.eclipse.jetty.deploy.DeploymentManager"> -->
+		<!-- <property name="contexts" ref="contexts" /> -->
+		<!-- <property name="appProviders"> -->
+		<!-- <list> -->
+		<!-- <bean id="webAppProvider" class="org.eclipse.jetty.deploy.providers.WebAppProvider"> -->
+		<!-- <property name="monitoredDirName" value="webapps" /> -->
+		<!-- <property name="scanInterval" value="1" /> -->
+		<!-- <property name="extractWars" value="true" /> -->
+		<!-- </bean> -->
+		<!-- </list> -->
+		<!-- </property> -->
+		<!-- </bean> -->
+		<!-- </list> -->
+		<!-- </property> -->
+
+	</bean>
+
+
+	<httpj:engine-factory bus="cxf">
+		<!-- <httpj:identifiedTLSServerParameters -->
+		<!-- id="secure"> -->
+		<!-- <httpj:tlsServerParameters> -->
+		<!-- <sec:keyManagers keyPassword="password"> -->
+		<!-- <sec:keyStore type="JKS" password="password" file="certs/cherry.jks"
+			/> -->
+		<!-- </sec:keyManagers> -->
+		<!-- </httpj:tlsServerParameters> -->
+		<!-- </httpj:identifiedTLSServerParameters> -->
+
+		<httpj:engine port="9001">
+			<!-- <httpj:tlsServerParametersRef id="secure" /> -->
+			<httpj:threadingParameters minThreads="5"
+				maxThreads="15" />
+			<httpj:connector>
+				<beans:bean class="org.eclipse.jetty.server.ServerConnector">
+					<beans:constructor-arg ref="server" />
+					<beans:property name="port" value="9001" />
+				</beans:bean>
+			</httpj:connector>
+			<httpj:handlers>
+				<beans:bean class="org.eclipse.jetty.server.handler.DefaultHandler" />
+			</httpj:handlers>
+			<httpj:sessionSupport>true</httpj:sessionSupport>
+		</httpj:engine>
+	</httpj:engine-factory>
+	<!-- <jaxws:endpoint xmlns:e="http://apache.org/hello_world_soap_http" -->
+	<!-- id="greeter5" address="/sayhi" publishedEndpointUrl="http://cxf.apache.org/publishedEndpointUrl1" -->
+	<!-- implementor="org.cxf.ws.SayHi" serviceName="e:SOAPService" -->
+	<!-- endpointName="e:SoapPort" /> -->
+	<bean id="implementorBean" class="org.cxf.ws.Sayhi" />
+	<jaxws:endpoint id="theImplementor" implementorClass="org.cxf.ws.Sayhi"
+		address="http://localhost:9001/simpleWithAddress">
+		<jaxws:implementor>
+			<ref bean="implementorBean" />
+		</jaxws:implementor>
+	</jaxws:endpoint>
+
+
+
+
+
+</beans>
