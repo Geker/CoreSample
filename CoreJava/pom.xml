@@ -146,4 +146,23 @@
 			<version>3.8.1</version>
 		</dependency>
 	</dependencies>
+
+
+	<!-- 默认src目录下的文件，不创建在target目录中，也不会打包 -->
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+		</resources>
+	</build>
 </project>

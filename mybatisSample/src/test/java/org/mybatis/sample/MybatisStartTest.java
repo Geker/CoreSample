@@ -75,4 +75,17 @@ public class MybatisStartTest {
         // logger.warn(r.toString());
 
 	}
+
+	@Test
+	public void testCityLike() throws Exception {
+
+		SqlSession session = sqlSessionFactory.openSession();
+		CityMapper mapper = session.getMapper(CityMapper.class);
+		City r = mapper.selectCity(2);
+		City c = mapper.selectCityName("Abh%");
+
+		System.out.println(r);
+		System.out.println(c);
+
+	}
 }

@@ -15,7 +15,15 @@
 	</select>
 
 	<!-- 如果只有一个参数，会自动根据类型推断使用正确的typeHandler处理参数。如果有多个参数，则需要@Param指定参数的名称-->
-	<update id="updateCity" parameterType="map" flushCache="true">
+	<update id="updateCity" flushCache="true">
 		update city set city=#{city} where city_id = #{city_id}
 	</update>
+
+
+	<select id="selectCityName" resultType="City" flushCache="true">
+	select *
+	from city where city like #{city}
+	</select>
+
+
 </mapper>

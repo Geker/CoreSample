@@ -7,7 +7,8 @@ import java.io.InputStreamReader;
 public class ClassloaderResource {
     public static void main(String[] args) throws IOException {
 
-        InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("org/corejava/classloader/2.txt");
+		InputStream is = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("org/corejava/classloader/333.xml");
         InputStreamReader isr = new InputStreamReader(is);
         char[] cbuf = new char[1024];
         isr.read(cbuf);
