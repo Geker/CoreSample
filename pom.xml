@@ -37,5 +37,6 @@
     <module>zkTutorial</module>
     <module>mybatisSample</module>
     <module>cxf-ws</module>
+    <module>axis2-client-sample</module>
   </modules>
 </project>
