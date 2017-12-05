@@ -7,6 +7,16 @@ public class NoteBook {
     private String mouse;
     private String touchPad;
 
+    private long speed;
+
+    public long getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(long speed) {
+        this.speed = speed;
+    }
+
     public String getTouchPad() {
         return touchPad;
     }
