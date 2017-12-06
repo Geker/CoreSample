@@ -38,5 +38,6 @@
     <module>mybatisSample</module>
     <module>cxf-ws</module>
     <module>axis2-client-sample</module>
+    <module>dubbo-los-client</module>
   </modules>
 </project>
