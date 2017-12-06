@@ -41,5 +41,6 @@
 		<module>axis2-client-sample</module>
 		<module>dubbo-los-client</module>
 		<module>dev-tools</module>
+		<module>curator-sample</module>
 	</modules>
 </project>
