@@ -7,7 +7,7 @@
     按照特定的格式备份zk数据到文件并压缩。
 2. batchBakInsert2DB.sh
     读取上一步batchBak压缩的文件内容，按照配置的mysql地址将内容插入数据库的对应表。
-3. batchDel.sh 
+3. batchDel.sh
 	- 能够删除执行记录，同样依赖batch.conf的zk配置和batchGrp配置。
     - 删除Servers、TaskExecutions目录下对应的执行记录。
     **最好确保删除之前已经调用batchBak进行了合理的备份。**
