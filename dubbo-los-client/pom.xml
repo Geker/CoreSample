@@ -8,7 +8,7 @@
 	</parent>
 
 
- 	<artifactId>dubbo-client-demo</artifactId>
+ 	<artifactId>dubbo-los-client</artifactId>
  	<build>
 		<plugins>
 			<plugin>
