@@ -30,7 +30,7 @@ public class AddListenerTest {
             cache(client, cache);
     }
 
-    private void cache(CuratorFramework client, NodeCache cache)
+	private void cache(CuratorFramework client, final NodeCache cache)
             throws Exception, NoSuchFieldException, IllegalAccessException, IOException {
 
         NodeCacheListener listener = new NodeCacheListener() {
