@@ -1,0 +1,11 @@
+1.调用los服务 
+	A.修改batch.conf里面的zk地址和svc.name；
+	B.增加参数列表在batch.conf里面
+	C.执行invoke.sh
+2.batchDel.sh 
+	能够删除执行记录，同样依赖batch.conf的zk配置和batchGrp配置。
+3.batchCheck.sh
+	检查特定grp下面的所有执行记录。如果有异常，会有文件输出。
+	依赖zk配置和batchGrp配置。
+4.batchBak.sh
+	按照特定的格式备份zk数据到文件并压缩。

@@ -100,7 +100,7 @@ public class FutureTest {
         exec.shutdown();
     }
 
-    @SuppressWarnings("static-access")
+
     @Test
     public void testCompletableFuture() throws Exception {
         CompletableFuture com = CompletableFuture.runAsync(new Runnable() {

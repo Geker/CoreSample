@@ -1,5 +1,7 @@
 package org.corejava.bean;
 
+import java.math.BigDecimal;
+
 //@Component
 public class Computer extends AbstractCalc implements Cloneable {
 
@@ -7,6 +9,16 @@ public class Computer extends AbstractCalc implements Cloneable {
     private String mem;
     private String keyboard;
     private String mouse;
+
+    private BigDecimal price;
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
     public String getCpu() {
         return cpu;

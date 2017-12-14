@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.junit.Test;
 
 public class ClassloaderTest {
+    @SuppressWarnings("restriction")
     @Test
     public void showClassloader() {
 
@@ -19,12 +20,12 @@ public class ClassloaderTest {
     public void ownclassloader() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
             InvocationTargetException, NoSuchMethodException, SecurityException {
         CustomClassLoader loader = new CustomClassLoader(ClassloaderTest.class.getClassLoader());
-        Class clazz = loader.loadClass("org.corejava.classloader.CustomInteger");
+        Class<?> clazz = loader.loadClass("org.corejava.classloader.CustomInteger");
         Object instance = clazz.newInstance();
         clazz.getMethod("runMe").invoke(instance);
         System.out.println(clazz.getClassLoader());
         System.err.println(String.format("class:%s;HashCode:%s", clazz, clazz.hashCode()));
-        Class clazz1 = ClassLoader.getSystemClassLoader().loadClass("org.corejava.classloader.CustomInteger");
+        Class<?> clazz1 = ClassLoader.getSystemClassLoader().loadClass("org.corejava.classloader.CustomInteger");
         System.err.println(String.format("class:%s;HashCode:%s", clazz1, clazz1.hashCode()));
 
 
