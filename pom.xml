@@ -42,5 +42,7 @@
 		<module>dubbo-los-client</module>
 		<module>dev-tools</module>
 		<module>curator-sample</module>
+		<module>spring-mvc-showcase</module>
+
 	</modules>
 </project>
