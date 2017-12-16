@@ -1,3 +1,4 @@
 /target/
 /CoreJava/target
-/target
+/.idea/*
+.idea/*
