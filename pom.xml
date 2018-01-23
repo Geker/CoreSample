@@ -43,6 +43,7 @@
 		<module>dev-tools</module>
 		<module>curator-sample</module>
 		<module>spring-mvc-showcase</module>
+		<module>salesfiledownload</module>
 
 	</modules>
 </project>
