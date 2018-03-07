@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="CoreJava" />
+        <module name="mybatisSample" />
+        <module name="redisSample" />
+        <module name="SpringInner" />
+        <module name="webCrawler" />
+        <module name="zkTutorial" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="1.8">
+      <module name="CoreJava" target="1.8" />
+      <module name="mybatisSample" target="1.8" />
+      <module name="personJavaSample" target="1.8" />
+      <module name="redisSample" target="1.8" />
+      <module name="SpringInner" target="1.8" />
+      <module name="webCrawler" target="1.8" />
+      <module name="zkTutorial" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

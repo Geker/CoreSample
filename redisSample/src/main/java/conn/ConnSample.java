@@ -6,22 +6,11 @@ import redis.clients.jedis.JedisPoolConfig;
 
 public class ConnSample {
     public static void main(String[] args) {
-
         JedisPool pool = new JedisPool(new JedisPoolConfig(), "localhost");
         Jedis res = pool.getResource();
         res.close();
         res.set("key", "1000");
-
-        Long value = res.incr("aotmicSeq");
-        System.out.println(value);
-        value = res.incr("aotmicSeq");
-        System.out.println(value);
-
-        value = res.incr("aotmicSeq");
-        System.out.println(value);
-
         System.out.println(res.get("key"));
-
 
     }
 }

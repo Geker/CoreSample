@@ -1,24 +1,3 @@
-CREATE TABLE
-    serverinfo
-    (
-        transdate VARCHAR(10) NOT NULL,taskname VARCHAR(100) NOT NULL,runkey VARCHAR(40) NOT NULL,status VARCHAR(15),
-        subpath VARCHAR(200),server VARCHAR(40) NOT NULL,crttime DATE,CONSTRAINT runkeyIndex UNIQUE(server,runkey,
-        transdate)
-    )
-    ENGINE=InnoDB DEFAULT CHARSET=utf8 DEFAULT COLLATE=utf8_general_ci;
-CREATE TABLE
-   taskexecutiondetail
-    (
-        runkey VARCHAR(40) NOT NULL,divide VARCHAR(40) NOT NULL,divide_value VARCHAR(400),step VARCHAR(40) NOT NULL,
-        step_value VARCHAR(2000),job VARCHAR(40) NOT NULL,job_value VARCHAR(2000),divide_status VARCHAR(40),step_status
-        VARCHAR(40),job_status VARCHAR(40),crttime DATE,step_finishMsg VARCHAR(3000),CONSTRAINT runkeyIndex UNIQUE
-        (runkey,divide,step,job)
-    )
-    ENGINE=InnoDB DEFAULT CHARSET=utf8 DEFAULT COLLATE=utf8_general_ci;
-CREATE TABLE
-    taskexecutioninfo
-    (
-        systemname VARCHAR(40) NOT NULL,transdate VARCHAR(10) NOT NULL,taskname VARCHAR(50) NOT NULL,runkey VARCHAR(40)
-        NOT NULL,runkey_value VARCHAR(512),status VARCHAR(10),crttime DATE,CONSTRAINT runkeyIndex UNIQUE(runkey)
-    )
-    ENGINE=InnoDB DEFAULT CHARSET=utf8 DEFAULT COLLATE=utf8_general_ci;
+CREATE TABLE serverinfo (transdate varchar(10) NOT NULL, taskname varchar(100) NOT NULL, runkey varchar(40) NOT NULL, status varchar(15), subpath varchar(200), server varchar(40) NOT NULL, crttime date, CONSTRAINT runkeyIndex UNIQUE (server, runkey, transdate));
+CREATE TABLE taskexecutiondetail (runkey varchar(40) NOT NULL, divide varchar(40) NOT NULL, divide_value varchar(400), step varchar(40) NOT NULL, step_value varchar(2000), job varchar(40) NOT NULL, job_value varchar(2000), divide_status varchar(40), step_status varchar(40), job_status varchar(40), crttime date, step_finishMsg varchar(3000), CONSTRAINT runkeyIndex UNIQUE (runkey, divide, step, job));
+CREATE TABLE taskexecutioninfo (systemname varchar(40) NOT NULL, transdate varchar(10) NOT NULL, taskname varchar(50) NOT NULL, runkey varchar(40) NOT NULL, runkey_value varchar(512), status varchar(10), crttime date, CONSTRAINT runkeyIndex UNIQUE (runkey)) ;

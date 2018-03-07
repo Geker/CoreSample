@@ -50,7 +50,7 @@ public class Map2BeanConvertTest {
 
         // 展开内部的类结构。
         Map<String, Object> pmap = PropertyUtils.describe(pc);
-        logger.error("beanUtils:" + JSON.toJSONString(map));
+		logger.error("beanUtils:" + JSON.toJSONString(map));
         logger.error("PropertyUtils:" + JSON.toJSONString(pmap));
 
     }
