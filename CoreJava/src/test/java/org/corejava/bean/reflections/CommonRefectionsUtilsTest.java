@@ -1,5 +1,6 @@
 package org.corejava.bean.reflections;
 
+import java.lang.reflect.Method;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -44,5 +45,24 @@ public class CommonRefectionsUtilsTest {
         Date dt2 = (Date) FieldUtils.readField(com, "buyTime", true);
         Assert.assertEquals(dt, dt2);
         System.err.println(com.getClass().hashCode());
-     }
+
+
+    }
+
+    /**
+     * MethodUtils无法调用静态内部方法
+     *
+     * @throws Exception
+     */
+    @Test
+    public void staticInvoke() throws Exception {
+        MethodUtils.invokeStaticMethod(Computer.class, "printClassName", new Object[0]);
+    }
+
+    @Test
+    public void staticInvoke2() throws Exception {
+        Method m = MethodUtils.getAccessibleMethod(Computer.class, "printClassName", new Class<?>[0]);
+        m.invoke(null, new Object[0]);
+    }
+
 }

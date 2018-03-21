@@ -5,6 +5,10 @@ import java.util.Map;
 
 public class Computer {
 
+    public Computer() {
+        printClassName();
+    }
+
     // nest Property
     private CorePart corePart;
     private String keyboard;
@@ -20,6 +24,7 @@ public class Computer {
     private Date getTime() {
         return buyTime;
     }
+
     public void setBuyTime(Date buyTime) {
         this.buyTime = buyTime;
     }
@@ -70,5 +75,8 @@ public class Computer {
         this.othersParts = othersParts;
     }
 
+    private static void printClassName() {
+        System.out.println("Computer");
+    }
 
 }
