@@ -1,3 +1,0 @@
-print("hello bsh");
-var c=eval("3+3");
-print(c);
