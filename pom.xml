@@ -43,5 +43,6 @@
 		<module>curator-sample</module>
 		<module>spring-mvc-showcase</module>
     <module>embedJetty</module>
+    <module>vert.xServer</module>
   </modules>
 </project>
