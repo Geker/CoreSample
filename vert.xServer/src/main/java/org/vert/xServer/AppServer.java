@@ -14,7 +14,7 @@ import io.vertx.ext.web.Router;
  * Hello world!
  *
  */
-public class App {
+public class AppServer {
 	public static void main(String[] args) {
 
 		Computer com = new Computer();
