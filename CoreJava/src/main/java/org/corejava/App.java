@@ -17,6 +17,9 @@ public class App
 {
     public static void main(String[] args) throws IOException
     {
+
+
+      System.out.println(Runtime.class.getPackage().getImplementationVersion());
         List<String> s = FileUtils.readLines(new File("D:\\1"), "GBK");
         System.err.println(s);
         String str = s.get(0);
