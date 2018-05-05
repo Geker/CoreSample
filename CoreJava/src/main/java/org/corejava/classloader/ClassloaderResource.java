@@ -8,11 +8,9 @@ public class ClassloaderResource {
     public static void main(String[] args) throws IOException {
 
 		InputStream is = Thread.currentThread().getContextClassLoader()
-				.getResourceAsStream("org/corejava/classloader/333.xml");
+				.getResourceAsStream("org/corejava/classloader/res.xml");
         InputStreamReader isr = new InputStreamReader(is);
         char[] cbuf = new char[1024];
-        isr.read(cbuf);
-
         isr.read(cbuf);
         System.err.println(new String(cbuf));
 
