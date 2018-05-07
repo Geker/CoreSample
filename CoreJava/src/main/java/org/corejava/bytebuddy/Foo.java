@@ -1,4 +1,4 @@
-package org.corejava.bytebubby;
+package org.corejava.bytebuddy;
 
 class Foo {
     String bar() {

@@ -1,4 +1,4 @@
-package org.corejava.bytebubby;
+package org.corejava.bytebuddy;
 
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.dynamic.DynamicType.Loaded;

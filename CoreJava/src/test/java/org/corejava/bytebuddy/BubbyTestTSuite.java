@@ -1,4 +1,4 @@
-package org.corejava.bytebubby;
+package org.corejava.bytebuddy;
 
 import static org.junit.Assert.*;
 
