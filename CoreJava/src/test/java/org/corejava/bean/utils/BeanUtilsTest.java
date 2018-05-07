@@ -142,4 +142,33 @@ public class BeanUtilsTest {
         System.out.println(val1);
     }
 
+	@Test
+	public void testCopyTime() throws Exception {
+		StringBuilder sb = new StringBuilder(10000);
+		int n = 100;
+		NewComputer newComm = new NewComputer();
+		System.gc();
+		long s = System.nanoTime();
+		for (int i = 1; i < n; i++) {
+			BeanUtils.copyProperties(newComm, com);
+			sb.append(newComm.getMouse());
+		}
+		long e = System.nanoTime();
+		System.out.println((e - s) * 1.0 / n);
+		// about 10ms per copy with info log level
+		System.gc();
+		sb.setLength(0);
+
+		long s1 = System.nanoTime();
+		for (int i = 1; i < n; i++) {
+			org.springframework.beans.BeanUtils.copyProperties(com, newComm);
+			sb.append(newComm.getMouse());
+		}
+		long e1 = System.nanoTime();
+		System.out.println((e1 - s1) * 1.0 / n);
+
+		// if execute >50times about 5ms per copy with info log level.if execute times
+		// <30 ,is not faster than above a lot
+
+	}
 }
