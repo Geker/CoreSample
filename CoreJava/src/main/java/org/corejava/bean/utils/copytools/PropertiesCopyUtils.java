@@ -12,11 +12,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.corejava.bean.utils.CorePart;
 import org.corejava.bean.utils.CorePartAnother;
 import org.springframework.beans.FatalBeanException;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
 import org.trimou.Mustache;
