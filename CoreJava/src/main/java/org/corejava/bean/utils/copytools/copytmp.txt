@@ -1,0 +1,27 @@
+{{genPackage}};
+
+{{#packs}}
+import {{.}};
+{{/packs}}
+
+public class  {{CopyClassName}}{
+
+    public  void copyProperties({{source}} src,{{target}} target) {
+	{{#copyDatas.props}}
+		 target.set{{.}}(src.get{{.}}());
+	{{/copyDatas.props}}
+
+		/***the source do not have the value**/
+	{{#copyDatas.commentProps}}
+		// target.set{{.}}(src.get{{.}}());
+	{{/copyDatas.commentProps}}
+
+
+		/***the target do not have the field**/
+
+	{{#copyDatas.notExistsProps}}
+		// target.set{{.}}(src.get{{.}}());
+	{{/copyDatas.notExistsProps}}
+    }
+
+}
