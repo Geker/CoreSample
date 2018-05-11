@@ -1,5 +1,17 @@
 package org.corejava.bean.utils;
 public class CorePart {
+
+    private String price;
+
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
     private String cpu;
     private String mem;
     private String disk;

@@ -17,7 +17,7 @@ public class ClassloaderTest {
 
     // 不同Classloader加载相同的类，其hashCode不一样。
     @Test
-    public void ownclassloader() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
+    public void ownclassloaderTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException,
             InvocationTargetException, NoSuchMethodException, SecurityException {
         CustomClassLoader loader = new CustomClassLoader(ClassloaderTest.class.getClassLoader());
         Class<?> clazz = loader.loadClass("org.corejava.classloader.CustomInteger");
@@ -27,9 +27,6 @@ public class ClassloaderTest {
         System.err.println(String.format("class:%s;HashCode:%s", clazz, clazz.hashCode()));
         Class<?> clazz1 = ClassLoader.getSystemClassLoader().loadClass("org.corejava.classloader.CustomInteger");
         System.err.println(String.format("class:%s;HashCode:%s", clazz1, clazz1.hashCode()));
-
-
-
     }
 
 }
