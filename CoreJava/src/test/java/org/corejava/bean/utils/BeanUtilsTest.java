@@ -15,6 +15,7 @@ import org.apache.commons.beanutils.DynaBean;
 import org.apache.commons.beanutils.LazyDynaMap;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
+import org.corejava.bean.utils.copytools.CopyComputer2NewComputer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -145,7 +146,7 @@ public class BeanUtilsTest {
 	@Test
 	public void testCopyTime() throws Exception {
 		StringBuilder sb = new StringBuilder(10000);
-		int n = 100;
+		int n = 100000;
 		NewComputer newComm = new NewComputer();
 		System.gc();
 		long s = System.nanoTime();
@@ -154,21 +155,43 @@ public class BeanUtilsTest {
 			sb.append(newComm.getMouse());
 		}
 		long e = System.nanoTime();
-		System.out.println((e - s) * 1.0 / n);
+		System.out.println("BeanUtils.copyProperties: " + (e - s) * 1.0 / n);
 		// about 10ms per copy with info log level
 		System.gc();
 		sb.setLength(0);
-
+		newComm = new NewComputer();
 		long s1 = System.nanoTime();
 		for (int i = 1; i < n; i++) {
 			org.springframework.beans.BeanUtils.copyProperties(com, newComm);
 			sb.append(newComm.getMouse());
 		}
 		long e1 = System.nanoTime();
-		System.out.println((e1 - s1) * 1.0 / n);
+		System.out.println("springframework copyProperties: " + (e1 - s1) * 1.0 / n);
 
 		// if execute >50times about 5ms per copy with info log level.if execute times
 		// <30 ,is not faster than above a lot
 
+		System.gc();
+		sb.setLength(0);
+		newComm = new NewComputer();
+		long s2 = System.nanoTime();
+		for (int i = 1; i < n; i++) {
+			PropertyUtils.copyProperties(newComm, com);
+			sb.append(newComm.getMouse());
+		}
+		long e2 = System.nanoTime();
+		System.out.println("PropertyUtils: " + (e2 - s2) * 1.0 / n);
+
+		CopyComputer2NewComputer cp = new CopyComputer2NewComputer();
+		System.gc();
+		sb.setLength(0);
+		newComm = new NewComputer();
+		long s3 = System.nanoTime();
+		for (int i = 1; i < n; i++) {
+			cp.copyProperties(com, newComm);
+			sb.append(newComm.getMouse());
+		}
+		long e3 = System.nanoTime();
+		System.out.println("hand code " + (e3 - s3) * 1.0 / n);
 	}
 }
