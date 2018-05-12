@@ -90,7 +90,7 @@ public class BeanUtilsTest {
     public void bean2MapTest() throws Exception {
 
         // PropertyUtils.describe不会转换属性的对象。map的value还为object
-        Object obj = PropertyUtils.describe(com);
+		Map<String, Object> obj = PropertyUtils.describe(com);
         System.err.println((com));
         System.err.println(JSON.toJSONString(obj));
         System.err.println(mapper.writeValueAsString(obj));
@@ -98,12 +98,22 @@ public class BeanUtilsTest {
 
         // BeanUtils.describe 会转换属性的对象。map的value被转换为String
 
-        Object obj2 = BeanUtils.describe(com);
+		Map<String, String> obj2 = BeanUtils.describe(com);
         System.err.println(JSON.toJSONString(obj2));
         System.err.println(mapper.writeValueAsString(obj2));
 
+		// PropertyUtils.describe的结果才能被populate正确处理
+		Computer com1 = new Computer();
+		BeanUtils.populate(com1, obj);
+		System.err.println(JSON.toJSONString(com1));
+
     }
 
+	/**
+	 * 在使用bean2Map时，一般需要使用PropertyUtils.describe
+	 *
+	 * @throws Exception
+	 */
     @Test
     public void map2Bean() throws Exception {
 
@@ -146,13 +156,13 @@ public class BeanUtilsTest {
 	@Test
 	public void testCopyTime() throws Exception {
 		StringBuilder sb = new StringBuilder(10000);
-		int n = 100000;
+		int n = 100;
 		NewComputer newComm = new NewComputer();
 		System.gc();
 		long s = System.nanoTime();
 		for (int i = 1; i < n; i++) {
 			BeanUtils.copyProperties(newComm, com);
-			sb.append(newComm.getMouse());
+			// sb.append(newComm.getMouse());
 		}
 		long e = System.nanoTime();
 		System.out.println("BeanUtils.copyProperties: " + (e - s) * 1.0 / n);
@@ -163,7 +173,7 @@ public class BeanUtilsTest {
 		long s1 = System.nanoTime();
 		for (int i = 1; i < n; i++) {
 			org.springframework.beans.BeanUtils.copyProperties(com, newComm);
-			sb.append(newComm.getMouse());
+			// sb.append(newComm.getMouse());
 		}
 		long e1 = System.nanoTime();
 		System.out.println("springframework copyProperties: " + (e1 - s1) * 1.0 / n);
@@ -177,7 +187,7 @@ public class BeanUtilsTest {
 		long s2 = System.nanoTime();
 		for (int i = 1; i < n; i++) {
 			PropertyUtils.copyProperties(newComm, com);
-			sb.append(newComm.getMouse());
+			// sb.append(newComm.getMouse());
 		}
 		long e2 = System.nanoTime();
 		System.out.println("PropertyUtils: " + (e2 - s2) * 1.0 / n);
@@ -189,7 +199,7 @@ public class BeanUtilsTest {
 		long s3 = System.nanoTime();
 		for (int i = 1; i < n; i++) {
 			cp.copyProperties(com, newComm);
-			sb.append(newComm.getMouse());
+			// sb.append(newComm.getMouse());
 		}
 		long e3 = System.nanoTime();
 		System.out.println("hand code " + (e3 - s3) * 1.0 / n);
