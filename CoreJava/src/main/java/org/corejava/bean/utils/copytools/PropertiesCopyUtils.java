@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.corejava.bean.utils.CorePart;
-import org.corejava.bean.utils.CorePartAnother;
+import org.corejava.bean.utils.Computer;
+import org.corejava.bean.utils.NewComputer;
 import org.springframework.beans.FatalBeanException;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.StringUtils;
@@ -33,8 +33,8 @@ public class PropertiesCopyUtils {
             + "";
 
     public static void main(String[] args) {
-        Class<?> source = CorePart.class;
-        Class<?> target = CorePartAnother.class;
+		Class<?> source = Computer.class;
+		Class<?> target = NewComputer.class;
         genCopySrc(source, target);
     }
 
