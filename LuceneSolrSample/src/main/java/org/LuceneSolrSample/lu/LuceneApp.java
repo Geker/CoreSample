@@ -1,32 +1,28 @@
 package org.LuceneSolrSample.lu;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Date;
-
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.FieldType;
+import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.index.IndexableFieldType;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Date;
 
 public class LuceneApp {
     public static void main(String[] args) throws IOException {
         /**/ /* 指明要索引文件夹的位置,这里是C盘的S文件夹下 */
 
-        File fileDir =   new  File( "F:\\DevSoft\\lucene\\src" );
+        File fileDir =   new  File( "E:\\lucene\\src" );
         /**/ /* 这里放索引文件的位置 */
-        Path path = Paths.get("F:\\DevSoft\\lucene\\idx");
+        Path path = Paths.get("E:\\lucene\\idx");
         Directory indexDir =FSDirectory.open( path);
         Analyzer luceneAnalyzer = new StandardAnalyzer();
         IndexWriterConfig conf=new IndexWriterConfig(luceneAnalyzer);
@@ -43,9 +39,9 @@ public class LuceneApp {
                 Document document = new Document();
                 FieldType type= new FieldType();
                 type.setStored(true);
-                Field FieldPath = new Field("path", textFiles[i].getPath(),type );
+                Field FieldPath = new TextField("path", textFiles[i].getPath(),Field.Store.YES );
                 Field FieldBody =
-                        new Field("body", temp,type);
+                        new TextField("body", temp,Field.Store.YES);
                 document.add(FieldPath);
                 document.add(FieldBody);
                 indexWriter.addDocument(document);
