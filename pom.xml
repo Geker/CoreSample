@@ -44,5 +44,7 @@
 		<module>spring-mvc-showcase</module>
     <module>embedJetty</module>
     <module>vert.xServer</module>
+      <module>LuceneSolrSample</module>
+    <module>ssa</module>
   </modules>
 </project>

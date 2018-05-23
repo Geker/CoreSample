@@ -1,4 +1,5 @@
 /target/
 /CoreJava/target
 /target
-/.idea
+.settings
+.idea
