@@ -9,27 +9,28 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 
+import org.LuceneSolrSample.LuceneUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.FieldType;
+import org.apache.lucene.document.Field.Store;
+import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.index.IndexableFieldType;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 public class LuceneApp {
-    public static void main(String[] args) throws IOException {
-        /**/ /* 指明要索引文件夹的位置,这里是C盘的S文件夹下 */
+    public static void main(String[] args) throws Exception {
+        /**/
+        /* 指明要索引文件夹的位置,这里是C盘的S文件夹下 */
 
-        File fileDir =   new  File( "F:\\DevSoft\\lucene\\src" );
+        File fileDir = new File("F:\\DevSoft\\lucene\\src");
         /**/ /* 这里放索引文件的位置 */
         Path path = Paths.get("F:\\DevSoft\\lucene\\idx");
-        Directory indexDir =FSDirectory.open( path);
+        Directory indexDir = FSDirectory.open(path);
         Analyzer luceneAnalyzer = new StandardAnalyzer();
-        IndexWriterConfig conf=new IndexWriterConfig(luceneAnalyzer);
+        IndexWriterConfig conf = new IndexWriterConfig(luceneAnalyzer);
         IndexWriter indexWriter = new IndexWriter(indexDir, conf);
         File[] textFiles = fileDir.listFiles();
         long startTime = new Date().getTime();
@@ -37,23 +38,25 @@ public class LuceneApp {
         // 增加document到索引去
         for (int i = 0; i < textFiles.length; i++) {
             if (textFiles[i].isFile() && textFiles[i].getName().endsWith(".java")) {
-                System.out.println(" File  " + textFiles[i].getCanonicalPath() + "正在被索引.");
+                System.out.println("File " + textFiles[i].getCanonicalPath() + "正在被索引.");
                 String temp = FileReaderAll(textFiles[i].getCanonicalPath(), "UTF-8");
                 System.out.println(temp);
+                LuceneUtils.displayTokens(luceneAnalyzer, temp);
                 Document document = new Document();
-                FieldType type= new FieldType();
-                type.setStored(true);
-                Field FieldPath = new Field("path", textFiles[i].getPath(),type );
-                Field FieldBody =
-                        new Field("body", temp,type);
+                TextField FieldPath = new TextField("path", textFiles[i].getPath(), Store.YES);
+                TextField FieldBody = new TextField("body", temp, Store.YES);
+                TextField FieldShort = new TextField("short", "i love beijing", Store.YES);
+
                 document.add(FieldPath);
                 document.add(FieldBody);
+                document.add(FieldShort);
                 indexWriter.addDocument(document);
             }
         }
-        indexWriter.commit();
+
+//        indexWriter.commit();
         // optimize()方法是对索引进行优化
-         indexWriter.close();
+        indexWriter.close();
 
         // 测试一下索引的时间
         long endTime = new Date().getTime();

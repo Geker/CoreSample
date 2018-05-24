@@ -4,14 +4,13 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.queryparser.classic.QueryParser;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
+import org.apache.lucene.search.TermQuery;
+import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
@@ -20,26 +19,16 @@ public class TestQuery {
         // directory where your index is stored
         Path path = Paths.get("F:\\DevSoft\\lucene\\idx");
 
-        Directory index = FSDirectory.open(path);
-        IndexReader reader = DirectoryReader.open(index);
+        Directory indexD = FSDirectory.open(path);
+        IndexReader reader = DirectoryReader.open(indexD);
         IndexSearcher searcher = new IndexSearcher(reader);
+        TermQuery query = new TermQuery(new Term("body", "package"));
 
-//        Hits hits = null;
-        String queryString = "alibaba";
-        Query query = null;
+        TopDocs rs = searcher.search(query, 100);
 
-        Analyzer analyzer = new StandardAnalyzer();
-        try {
-            QueryParser qp = new QueryParser("body", analyzer);
-            query = qp.parse(queryString);
-        }
-        catch (ParseException e) {
-        }
-        if (searcher != null) {
-              int hits = searcher.count(query);
-            if (hits > 0) {
-                System.out.println(" 找到: " + hits+ "  个结果! ");
-            }
+        if (rs.totalHits > 0) {
+            System.out.println(" 找到: " + rs.scoreDocs.length + "  个结果! ");
+
         }
     }
 
