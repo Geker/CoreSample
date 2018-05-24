@@ -8,7 +8,6 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
@@ -28,7 +27,6 @@ public class TestQuery {
 
         if (rs.totalHits > 0) {
             System.out.println(" 找到: " + rs.scoreDocs.length + "  个结果! ");
-
         }
     }
 
