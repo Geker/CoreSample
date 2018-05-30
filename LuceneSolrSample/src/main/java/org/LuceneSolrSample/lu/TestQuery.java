@@ -1,37 +1,33 @@
 package org.LuceneSolrSample.lu;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 public class TestQuery {
     public static void main(String[] args) throws IOException {
         // directory where your index is stored
-        Path path = Paths.get("E:\\lucene\\idx");
+        Path path = Paths.get("F:\\DevSoft\\lucene\\idx");
 
-        Directory idxD = FSDirectory.open(path);
-        IndexReader reader = DirectoryReader.open(idxD);
+        Directory indexD = FSDirectory.open(path);
+        IndexReader reader = DirectoryReader.open(indexD);
         IndexSearcher searcher = new IndexSearcher(reader);
+        TermQuery query = new TermQuery(new Term("body", "package"));
 
-//        Hits hits = null;
-        String queryString = "ourselves";
-         Term term=new Term("body", queryString);
+        TopDocs rs = searcher.search(query, 100);
 
-        Query query=new TermQuery(term);
-        TopDocs topDocs=searcher.search(query, 1000);
-        System.out.println("共检索出 " + topDocs.totalHits + " 条记录");
-        System.out.println();
-
+        if (rs.totalHits > 0) {
+            System.out.println(" 找到: " + rs.scoreDocs.length + "  个结果! ");
+        }
     }
 
 }
