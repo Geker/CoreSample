@@ -46,5 +46,6 @@
     <module>vert.xServer</module>
       <module>LuceneSolrSample</module>
     <module>ssa</module>
-  </modules>
+    <module>CoreUtils</module>
+	</modules>
 </project>
