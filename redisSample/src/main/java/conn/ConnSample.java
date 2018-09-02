@@ -11,6 +11,5 @@ public class ConnSample {
         res.close();
         res.set("key", "1000");
         System.out.println(res.get("key"));
-
     }
 }
