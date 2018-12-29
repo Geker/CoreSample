@@ -86,11 +86,11 @@ public class BubbyTestTSuite {
     public void testInvokePrivateMethod() throws Exception {
 //        ByteBuddyAgent.install();
         BasePrivateObj obj=new BasePrivateObj();
-        TypePool typePool = TypePool.Default.ofClassPath();
+        TypePool typePool = TypePool.Default.ofSystemLoader();
 
         TypeDescription typeDescription = typePool.describe("org.corejava.bytebuddy.BasePrivateObj").resolve();
 
-        Unloaded<Object> untype = new ByteBuddy().redefine(typeDescription, ClassFileLocator.ForClassLoader.ofClassPath())
+        Unloaded<Object> untype = new ByteBuddy().redefine(typeDescription, ClassFileLocator.ForClassLoader.ofSystemLoader())
             .visit(new ModifierAdjustment().withMethodModifiers(ElementMatchers.named("show"), Visibility.PUBLIC)).make();
         Loaded<Object> type = untype.load(ClassLoadingStrategy.BOOTSTRAP_LOADER, ClassLoadingStrategy.Default.WRAPPER);
 

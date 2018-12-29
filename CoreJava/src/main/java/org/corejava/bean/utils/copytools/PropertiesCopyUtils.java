@@ -32,11 +32,7 @@ public class PropertiesCopyUtils {
             + "        // target.set{{.}}(src.get{{.}}());\r\n" + "    {{/copyDatas.notExistsProps}}\r\n" + "    }\r\n" + "\r\n" + "}\r\n"
             + "";
 
-    public static void main(String[] args) {
-		Class<?> source = Computer.class;
-		Class<?> target = NewComputer.class;
-        genCopySrc(source, target);
-    }
+
 
     private static void genCopySrc(Class<?> source, Class<?> target) {
         String genPackage = PropertiesCopyUtils.class.getPackage().toString();
@@ -181,4 +177,16 @@ public class PropertiesCopyUtils {
 
     }
 
+
+
+
+
+
+
+
+    public static void main(String[] args) {
+        Class<?> source = Computer.class;
+        Class<?> target = NewComputer.class;
+        genCopySrc(source, target);
+    }
 }

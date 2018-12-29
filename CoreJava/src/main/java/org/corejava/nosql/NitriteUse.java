@@ -24,8 +24,9 @@ public class NitriteUse {
 		// Create an Object Repository
 		ObjectRepository<Map> repository = db.getRepository(Map.class);
 
-		NitriteMapper nitriteMapper = new JacksonMapper();
-		Document doc = nitriteMapper.parse(JSON.toJSONString(c));
+		JacksonMapper nitriteMapper = new JacksonMapper();
+		Document doc = 	nitriteMapper.asDocument(c);
+//		Document doc = nitriteMapper.parse(JSON.toJSONString(c));
 		collection.insert(doc);
 	}
 }
