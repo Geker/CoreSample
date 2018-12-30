@@ -1,6 +1,6 @@
 package org.corejava.bean.utils;
 
-import java.util.Date;
+import java.util.Arrays;
 import java.util.Map;
 
 public class NewComputer {
@@ -33,20 +33,15 @@ public class NewComputer {
     private String keyboard;
     private String mouse;
 
-    private Date buyTime;
+	private String buyTime;
 
-    public Date getBuyTime() {
-        return buyTime;
-    }
+	public String getBuyTime() {
+		return buyTime;
+	}
 
-    @SuppressWarnings("unused")
-    private Date getTime() {
-        return buyTime;
-    }
-
-    public void setBuyTime(Date buyTime) {
-        this.buyTime = buyTime;
-    }
+	public void setBuyTime(String buyTime) {
+		this.buyTime = buyTime;
+	}
 
     // Index Properties
     private String[] programs;
@@ -97,5 +92,12 @@ public class NewComputer {
     private static void printClassName() {
 		System.out.println("NewComputer");
     }
+
+	@Override
+	public String toString() {
+		return "NewComputer [type=" + type + ", band=" + band + ", corePart=" + corePart + ", keyboard=" + keyboard
+				+ ", mouse=" + mouse + ", buyTime=" + buyTime + ", programs=" + Arrays.toString(programs)
+				+ ", othersParts=" + othersParts + "]";
+	}
 
 }

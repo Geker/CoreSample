@@ -6,7 +6,6 @@ import org.corejava.bean.utils.NewComputer;
 public class  CopyComputer2NewComputer{
 
     public  void copyProperties(Computer src,NewComputer target) {
-         target.setBuyTime(src.getBuyTime());
          target.setCorePart(src.getCorePart());
          target.setKeyboard(src.getKeyboard());
          target.setMouse(src.getMouse());
@@ -15,11 +14,13 @@ public class  CopyComputer2NewComputer{
 
         /***the source do not have the value**/
         // target.setBand(src.getBand());
+        // target.setBuyTime(src.getBuyTime());
         // target.setType(src.getType());
 
 
         /***the target do not have the field**/
 
+        // target.setBuyTime(src.getBuyTime());
     }
 
 }
