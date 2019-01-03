@@ -15,6 +15,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.mapstruct.version>1.3.0.Beta2</org.mapstruct.version>
+		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
 	</properties>
 
 
@@ -172,9 +173,34 @@
 			<artifactId>nitrite</artifactId>
 			<version>3.1.0</version>
 		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>javax.management</groupId> -->
+		<!-- <artifactId>jmxri</artifactId> -->
+		<!-- <version>1.2.1</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>javax.management</groupId> -->
+		<!-- <artifactId>jmxremote_optional</artifactId> -->
+		<!-- <version>1.0.1_04</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>javax.management</groupId> -->
+		<!-- <artifactId>jmxremote</artifactId> -->
+		<!-- <version>1.0.1_04</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>javax.management</groupId>
+			<artifactId>jmxtools</artifactId>
+			<version>1.2.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId> <!-- OR use this with Java 8 and beyond: <artifactId>mapstruct-jdk8</artifactId> -->
+			<version>${org.mapstruct.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct-processor</artifactId> <!-- OR use this with Java 8 and beyond: <artifactId>mapstruct-jdk8</artifactId> -->
 			<version>${org.mapstruct.version}</version>
 		</dependency>
 	</dependencies>
@@ -212,6 +238,11 @@
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
+				<executions>
+					<execution>
+						<goal>compile</goal>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
