@@ -59,3 +59,7 @@ local.properties
 /zkTutorial/.settings
 /dev-tools/.settings/org.eclipse.core.resources.prefs
 /redisSample/.settings
+/embedJetty/target/classes
+/embedJetty/target/test-classes
+target
+/embedJetty/target

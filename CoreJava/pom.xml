@@ -188,11 +188,11 @@
 		<!-- <artifactId>jmxremote</artifactId> -->
 		<!-- <version>1.0.1_04</version> -->
 		<!-- </dependency> -->
-		<dependency>
-			<groupId>javax.management</groupId>
-			<artifactId>jmxtools</artifactId>
-			<version>1.2.1</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>javax.management</groupId> -->
+<!-- 			<artifactId>jmxtools</artifactId> -->
+<!-- 			<version>1.2.1</version> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId> <!-- OR use this with Java 8 and beyond: <artifactId>mapstruct-jdk8</artifactId> -->
