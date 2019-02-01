@@ -79,4 +79,8 @@ public class Computer {
         System.out.println("Computer");
     }
 
+    private static final int i = 10;
+
+    private static final boolean b = true;
+
 }

@@ -1,6 +1,8 @@
 package org.corejava.bean.reflections;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -46,7 +48,6 @@ public class CommonRefectionsUtilsTest {
         Assert.assertEquals(dt, dt2);
         System.err.println(com.getClass().hashCode());
 
-
     }
 
     /**
@@ -63,6 +64,42 @@ public class CommonRefectionsUtilsTest {
     public void staticInvoke2() throws Exception {
         Method m = MethodUtils.getAccessibleMethod(Computer.class, "printClassName", new Class<?>[0]);
         m.invoke(null, new Object[0]);
+    }
+
+    @Test
+    public void staticInvoke3() throws Exception {
+        Method m = MethodUtils.getMatchingMethod(Computer.class, "printClassName", new Class<?>[0]);
+        m.setAccessible(true);
+        m.invoke(null, new Object[0]);
+    }
+
+    @Test
+    public void modifyStaticFinalInt() throws Exception {
+        Field m = FieldUtils.getDeclaredField(Computer.class, "i", true);
+        // m.setAccessible(true);
+        // m.setInt(null, 9);
+        setFinalStatic(m, 11);
+        System.out.println(m.get(null));
+    }
+
+    @Test
+    public void modifyStaticFinalBoolean() throws Exception {
+        Field m = FieldUtils.getDeclaredField(Computer.class, "b", true);
+        // m.setAccessible(true);
+        // m.setInt(null, 9);
+        setFinalStatic(m, false);
+        System.out.println(m.get(null));
+    }
+
+    /*
+     * 通过修改modifier可以间接修改final的值
+     */
+    static void setFinalStatic(Field field, Object newValue) throws Exception {
+        field.setAccessible(true);
+        Field modifiersField = Field.class.getDeclaredField("modifiers");
+        modifiersField.setAccessible(true);
+        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
+        field.set(null, newValue);
     }
 
 }
