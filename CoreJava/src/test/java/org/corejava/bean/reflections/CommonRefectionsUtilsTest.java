@@ -78,7 +78,7 @@ public class CommonRefectionsUtilsTest {
         Field m = FieldUtils.getDeclaredField(Computer.class, "i", true);
         // m.setAccessible(true);
         // m.setInt(null, 9);
-        setFinalStatic(m, 11);
+        CommonRefectionsUtils.updateFinalStatic(m, 11);
         System.out.println(m.get(null));
     }
 
@@ -87,19 +87,10 @@ public class CommonRefectionsUtilsTest {
         Field m = FieldUtils.getDeclaredField(Computer.class, "b", true);
         // m.setAccessible(true);
         // m.setInt(null, 9);
-        setFinalStatic(m, false);
+        CommonRefectionsUtils.updateFinalStatic(m, false);
         System.out.println(m.get(null));
     }
 
-    /*
-     * 通过修改modifier可以间接修改final的值
-     */
-    static void setFinalStatic(Field field, Object newValue) throws Exception {
-        field.setAccessible(true);
-        Field modifiersField = Field.class.getDeclaredField("modifiers");
-        modifiersField.setAccessible(true);
-        modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
-        field.set(null, newValue);
-    }
+
 
 }
