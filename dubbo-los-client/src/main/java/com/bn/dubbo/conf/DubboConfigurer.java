@@ -2,7 +2,7 @@ package com.bn.dubbo.conf;
 
 import java.util.Properties;
 
-import com.alibaba.dubbo.common.utils.ConfigUtils;
+import org.apache.dubbo.common.utils.ConfigUtils;
 
 /**
  *

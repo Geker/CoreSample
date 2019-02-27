@@ -4,12 +4,13 @@ package cn.openlo.protocol.dubbo;
 import java.util.Locale;
 import java.util.Map;
 
-import com.alibaba.dubbo.rpc.RpcContext;
-import com.alibaba.dubbo.rpc.service.GenericException;
-import com.alibaba.dubbo.rpc.service.GenericService;
+import org.apache.dubbo.rpc.RpcContext;
+import org.apache.dubbo.rpc.service.GenericException;
+import org.apache.dubbo.rpc.service.GenericService;
+
 
 /**
- * 
+ *
  * <p>
  * Title: DubboGenericService
  * </p>
@@ -34,7 +35,7 @@ public abstract class DubboGenericService implements GenericService {
 
     /**
      * Dubbo通用服务调用
-     * 
+     *
      * @see com.alibaba.dubbo.rpc.service.GenericService#$invoke(java.lang.String, java.lang.String[], java.lang.Object[])
      * @return DubboGenericResult
      */
@@ -60,7 +61,7 @@ public abstract class DubboGenericService implements GenericService {
 
     /**
      * 具体的服务调用
-     * 
+     *
      * @param serviceName 服务名称
      * @param locale 请求方locale信息
      * @param params 服务参数

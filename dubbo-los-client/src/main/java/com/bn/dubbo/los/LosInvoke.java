@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
-import com.alibaba.dubbo.common.json.JSON;
 import com.bn.dubbo.client.DubboClient;
 import com.bn.dubbo.conf.DubboConfigurer;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,7 +15,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import cn.openlo.gw.proxy.GenericRequest;
 import cn.openlo.protocol.dubbo.DubboGenericResult;
 
-@SuppressWarnings("deprecation")
 public class LosInvoke {
     private static final String DUBBO_REGISTRY_ADDRESS = "zookeeper://127.0.0.1:2181";
 
@@ -24,23 +22,15 @@ public class LosInvoke {
         DubboClient dubboClient;
         Properties dubboConfig = new Properties();
         dubboConfig.put("dubbo.registry.address", zkAddr);
-        // dubboConfig.put("dubbo.provider.proxy", "jdk");
-        // dubboConfig.put("dubbo.consumer.proxy", "jdk");
-        // dubboConfig.put("dubbo.application.compiler", "jdk");
-        /*
-         * dubbo.registry.protocol=dubbo
-         * dubbo.registry.client=curator
-         *
-         * dubbo.protocol.port=50001
-         */
         dubboConfig.put("dubbo.registry.protocol", "dubbo");
         dubboConfig.put("dubbo.registry.client", "curator");
-
         DubboConfigurer.configure(dubboConfig);
         dubboClient = new DubboClient("consumer");
         DubboGenericResult result = (DubboGenericResult) dubboClient.invoke(svcName, props);
         try {
-            System.out.println(JSON.json(result));
+            ObjectMapper objectMapper = new ObjectMapper();
+
+            System.out.println(objectMapper.writeValueAsString(result));
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -59,6 +49,7 @@ public class LosInvoke {
         ObjectMapper objectMapper = new ObjectMapper();
         return execute(svcName, objectMapper.convertValue(req, Map.class), DUBBO_REGISTRY_ADDRESS);
     }
+
     /**
      * 调用LOS代理--替换特殊的参数
      *

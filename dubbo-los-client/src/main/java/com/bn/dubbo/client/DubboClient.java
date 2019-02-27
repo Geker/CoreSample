@@ -7,11 +7,12 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.dubbo.config.ApplicationConfig;
+import org.apache.dubbo.config.ReferenceConfig;
+import org.apache.dubbo.rpc.service.GenericException;
+import org.apache.dubbo.rpc.service.GenericService;
 
-import com.alibaba.dubbo.config.ApplicationConfig;
-import com.alibaba.dubbo.config.ReferenceConfig;
-import com.alibaba.dubbo.rpc.service.GenericException;
-import com.alibaba.dubbo.rpc.service.GenericService;
+
 
 /**
  *
