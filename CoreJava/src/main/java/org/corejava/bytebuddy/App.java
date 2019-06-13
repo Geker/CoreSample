@@ -10,8 +10,8 @@ public class App {
         Unloaded<Object> type = bb.subclass(Object.class).name("org.corejava.bytebubby.dyn.Type").make();
         Loaded<Object> cls = type.load(App.class.getClassLoader());
 
-        System.err.println(type.getTypeDescription());
-        System.err.println(cls.getClass().getName());
+        System.out.println(type.getTypeDescription());
+        System.out.println(cls.getClass().getName());
 
     }
 }

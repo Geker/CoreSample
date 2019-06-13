@@ -59,7 +59,7 @@ public class StandardArgumentsController {
         os.write("Wrote binary response using OutputStream".getBytes());
     }
 
-    @GetMapping("/data/standard/response/pic")
+    @GetMapping(path="/data/standard/response/pic",produces = "image/jpeg")
     public void availableStandardResponseArgumentsForPics(OutputStream os) throws IOException {
         os.write(FileUtils.readFileToByteArray(new File("C:\\Users\\songq\\Pictures\\wallpics\\1.jpg")));
     }
