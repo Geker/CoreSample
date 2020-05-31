@@ -189,8 +189,6 @@
             <version>${org.mapstruct.version}</version>
         </dependency>
     </dependencies>
-
-
     <!-- 默认src目录下的文件，不创建在target目录中，也不会打包 -->
     <build>
         <resources>
