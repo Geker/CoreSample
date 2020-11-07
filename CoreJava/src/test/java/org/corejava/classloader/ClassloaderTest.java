@@ -10,8 +10,7 @@ public class ClassloaderTest {
     public void showClassloader() {
 
         System.out.println("class loader for Integer: " + Integer.class.getClassLoader());
-        System.out.println("class loader for BlowfishCipher: " + com.sun.crypto.provider.BlowfishCipher.class.getClassLoader());
-        System.out.println("class loader for this class: " + ClassloaderTest.class.getClassLoader());
+         System.out.println("class loader for this class: " + ClassloaderTest.class.getClassLoader());
 
     }
 

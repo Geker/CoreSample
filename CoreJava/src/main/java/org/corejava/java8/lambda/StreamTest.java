@@ -57,7 +57,7 @@ public class StreamTest {
         System.out.println(personList2);
         
         Map<Integer, Set<String>> s =
-                persons.stream()
+                ( Map<Integer, Set<String>> ) persons.stream()
                     .collect(
                         Collectors.groupingBy(Person::getAge, HashedMap::new, Collectors.mapping(Person::getName, Collectors.toSet())));
         System.err.println(s);
