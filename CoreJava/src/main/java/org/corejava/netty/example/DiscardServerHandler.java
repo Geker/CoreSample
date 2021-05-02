@@ -1,4 +1,4 @@
-package org.corejava.netty;
+package org.corejava.netty.example;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;

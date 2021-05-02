@@ -13,14 +13,21 @@
  * License for the specific language governing permissions and limitations
  * under the License.
  */
-package io.netty.example.custom;
-
-import java.io.UnsupportedEncodingException;
+package org.corejava.netty.example.custom;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.UnsupportedEncodingException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * Handler implementation for the echo client. It initiates the ping-pong
@@ -28,9 +35,14 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
  * the server.
  */
 public class CustomClientHandler extends ChannelInboundHandlerAdapter {
-
+    Logger logger
+            = LoggerFactory.getLogger(CustomClientHandler.class);
     private final ByteBuf firstMessage;
     private ByteBuf buff;
+
+    private ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
+    private final String msg;
+    private LongAdder longAdder=new LongAdder();
 
     /**
      * Creates a client-side handler.
@@ -42,24 +54,30 @@ public class CustomClientHandler extends ChannelInboundHandlerAdapter {
         // for (int i = 0; i < firstMessage.capacity(); i++) {
         // firstMessage.writeByte((byte) i);
         // }
-        String msg = "hello netty";
+        msg = "hello netty";
         byte[] bytes = msg.getBytes("UTF-8");
         firstMessage = Unpooled.buffer(bytes.length);
 
         firstMessage.writeBytes(bytes);
 
+
     }
 
+    @Override
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        byte[] bytes = ByteBufUtil.getBytes((ByteBuf) msg);
+        System.err.println(new String(bytes));
+        ctx.writeAndFlush(firstMessage);
+    }
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        ctx.writeAndFlush("hello String");
-    }
+//        ctx.writeAndFlush("hello String");
 
-    @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        // Close the connection when an exception is raised.
-        cause.printStackTrace();
-        ctx.close();
+        scheduledExecutorService.scheduleAtFixedRate(() -> {
+            ctx.writeAndFlush(msg);
+            firstMessage.retain();
+        }, 1, 1, TimeUnit.SECONDS);
+
     }
 }

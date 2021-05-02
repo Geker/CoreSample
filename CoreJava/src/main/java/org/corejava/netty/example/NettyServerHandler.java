@@ -1,10 +1,10 @@
 package org.corejava.netty.example;
 
-import java.net.InetAddress;
-import java.util.Date;
-
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+
+import java.net.InetAddress;
+import java.util.Date;
 
 public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
     /*
@@ -21,6 +21,7 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<String> {
         Date date=new Date();
         // 返回客户端消息
         ctx.writeAndFlush(date+"\n");
+        Thread.sleep(100);
     }
 
     /*

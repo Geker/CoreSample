@@ -55,7 +55,9 @@ public class MaxSubList {
                 maxvalue = sum;
             }
             if (sum <= 0) // 求和为0，则不可能为起点。此种算法无法确定起点。
+            {
                 sum = 0;
+            }
 
         }
         System.out.println("start:" + s + " end:" + (e));

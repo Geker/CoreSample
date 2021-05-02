@@ -1,10 +1,11 @@
-package org.corejava.netty.example;
+package org.corejava.netty.example.queuesize;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import org.corejava.netty.example.NettyClientFilter;
 
 import java.io.IOException;
 
@@ -32,9 +33,12 @@ public class ExampleClient {
     }
 
     public static void start() throws IOException{
-        String str="Hello Netty";
-        ch.writeAndFlush(str+ "\r\n");
-        System.out.println("客户端发送数据:"+str);
+        int j=1000;
+        while(j--  >0) {
+            String str = "Hello Netty-"+j;
+            ch.writeAndFlush(str + "\r\n");
+            System.out.println("客户端发送数据:" + str);
+        }
    }
 
 }
