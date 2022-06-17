@@ -16,7 +16,7 @@
 		<org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
 		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
 		<netty-all.version>4.1.54.Final</netty-all.version>
-		<spring.version>5.2.10.RELEASE</spring.version>
+		<spring.version>5.2.22.RELEASE</spring.version>
 		<guava.version>30.0-jre</guava.version>
 		<commons-lang3.version>3.11</commons-lang3.version>
 		<fastjson.version>1.2.83</fastjson.version>
